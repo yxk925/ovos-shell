@@ -22,9 +22,9 @@ SliderBase {
 
     iconSource: Qt.resolvedUrl("./brightness-increase.svg")
 
-   // slider.value: plasmoid.configuration.fakeBrightness
+    slider.value: applicationSettings.fakeBrightness
     slider.onMoved: {
-       // plasmoid.configuration.fakeBrightness = slider.value;
+       applicationSettings.fakeBrightness = slider.value;
     }
     slider.from: 0
     slider.to: 1

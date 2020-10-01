@@ -55,7 +55,7 @@ GridLayout {
         property int delegateSize: Kirigami.Units.iconSizes.medium * 2 + Kirigami.Units.smallSpacing*2
 
         HomeDelegate {}
-        WirelessDelegate {}
+        //WirelessDelegate {}
         Delegate {
             iconSource: "image-rotate-symbolic"
             text: "Rotate"

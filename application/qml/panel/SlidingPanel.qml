@@ -29,9 +29,9 @@ Item {
 
     readonly property bool horizontal: width > height
 
-    readonly property real position: 1 - (flickable.contentY - contentHeight + height) / height
+    readonly property real position: 1 - (flickable.contentY - contentHeight + Math.min(height, quickSettings.implicitHeight)) / Math.min(height, quickSettings.implicitHeight)
 
-    readonly property real contentHeight: quickSettings.height + layout.anchors.margins * 2
+    readonly property real contentHeight: quickSettings.height + contentsLayout.anchors.margins * 2
     state: "closed"
 
     function open() {
@@ -101,7 +101,7 @@ Item {
             target: flickable
             property: "contentY"
             from: flickable.contentY
-            to: root.contentHeight - root.height
+            to: root.contentHeight - Math.min(root.height, quickSettings.implicitHeight + contentsLayout.anchors.margins * 2)
             duration: Kirigami.Units.longDuration
             easing.type: Easing.InOutQuad
         }
@@ -146,10 +146,10 @@ Item {
         MouseArea {
             id: flickableContents
             width: parent.width
-            implicitHeight: layout.implicitHeight + layout.anchors.margins * 2
+            implicitHeight: contentsLayout.implicitHeight + contentsLayout.anchors.margins * 2
 
             ColumnLayout {
-                id: layout
+                id: contentsLayout
                 spacing: 0
 
                 anchors {

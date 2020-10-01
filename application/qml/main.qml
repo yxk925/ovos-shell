@@ -23,7 +23,6 @@ import QtGraphicalEffects 1.0
 import org.kde.kirigami 2.4 as Kirigami
 import QtQuick.Window 2.2
 import Mycroft 1.0 as Mycroft
-import org.kde.private.mycroftgui 1.0 as MycroftGui
 import QtQuick.Controls.Material 2.0
 
 import "./panel" as Panel
@@ -100,6 +99,11 @@ Kirigami.AbstractApplicationWindow {
                 }
                 height: root.height
             }
+        }
+        Rectangle {
+            anchors.fill: parent
+            color: "black"
+            opacity: (1 - applicationSettings.fakeBrightness) * 0.85
         }
     }
 }

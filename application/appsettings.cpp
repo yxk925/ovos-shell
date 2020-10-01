@@ -25,32 +25,34 @@ AppSettings::AppSettings(QObject *parent) :
 {
 }
 
-bool AppSettings::darkMode() const
+QString AppSettings::rotation() const
 {
-    return m_settings.value(QStringLiteral("darkMode"), true).toBool();
+    return m_settings.value(QStringLiteral("rotation"), QStringLiteral("NORMAL")).toString();
 }
 
-void AppSettings::setDarkMode(bool dark)
+void AppSettings::setRotation(const QString &rotation)
 {
-    if (AppSettings::darkMode() == dark) {
+    if (AppSettings::rotation() == rotation) {
         return;
     }
 
-    m_settings.setValue(QStringLiteral("darkMode"), dark);
-    emit darkModeChanged();
+    m_settings.setValue(QStringLiteral("rotation"), rotation);
+    emit rotationChanged();
 }
 
-bool AppSettings::usesRemoteSTT() const
+qreal AppSettings::fakeBrightness() const
 {
-    return m_settings.value(QStringLiteral("usesRemoteSTT"), false).toBool();
+    return m_settings.value(QStringLiteral("fakeBrightness"), 1.0).toDouble();
 }
 
-void AppSettings::setUsesRemoteSTT(bool remote)
+void AppSettings::setFakeBrightness(qreal brightness)
 {
-    if (AppSettings::usesRemoteSTT() == remote) {
+    if (AppSettings::fakeBrightness() == brightness) {
         return;
     }
 
-    m_settings.setValue(QStringLiteral("usesRemoteSTT"), remote);
-    emit usesRemoteSTTChanged();
+    m_settings.setValue(QStringLiteral("fakeBrightness"), brightness);
+    emit fakeBrightnessChanged();
 }
+
+#include "moc_appsettings.cpp"

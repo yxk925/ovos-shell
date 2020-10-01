@@ -27,20 +27,21 @@ class QSettings;
 class AppSettings : public QObject
 {
     Q_OBJECT
-    Q_PROPERTY(bool darkMode READ darkMode WRITE setDarkMode NOTIFY darkModeChanged)
-    Q_PROPERTY(bool usesRemoteSTT READ usesRemoteSTT WRITE setUsesRemoteSTT NOTIFY usesRemoteSTTChanged)
+    Q_PROPERTY(QString rotation READ rotation WRITE setRotation NOTIFY rotationChanged)
+    Q_PROPERTY(qreal fakeBrightness READ fakeBrightness WRITE setFakeBrightness NOTIFY fakeBrightnessChanged)
     
 public:
-    explicit AppSettings(QObject *parent=0);
+    explicit AppSettings(QObject *parent = nullptr);
 
-    bool darkMode() const;
-    void setDarkMode(bool dark);
-    bool usesRemoteSTT() const;
-    void setUsesRemoteSTT(bool remote);
+    void setRotation(const QString &rotation);
+    QString rotation() const;
+
+    void setFakeBrightness(qreal brightness);
+    qreal fakeBrightness() const;
 
 Q_SIGNALS:
-    void darkModeChanged();
-    void usesRemoteSTTChanged();
+    void rotationChanged();
+    void fakeBrightnessChanged();
 
 private:
     QSettings m_settings;

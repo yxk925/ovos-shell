@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+../application/appsettings.h
+QSettings
+-
+QCoreApplication
+-
+QDebug
+-
+
 /home/diau/git/mycroft/mycroft-embedded-shell/application/appsettings.cpp
 QDebug
 -
@@ -13,6 +21,8 @@ QFile
 -
 appsettings.h
 /home/diau/git/mycroft/mycroft-embedded-shell/application/appsettings.h
+moc_appsettings.cpp
+/home/diau/git/mycroft/mycroft-embedded-shell/application/moc_appsettings.cpp
 
 /home/diau/git/mycroft/mycroft-embedded-shell/application/appsettings.h
 QSettings
@@ -39,18 +49,10 @@ QCursor
 -
 QtWebView/QtWebView
 -
-QGuiApplication
--
-QtAndroid
--
-keyfilter.h
-/home/diau/git/mycroft/mycroft-embedded-shell/application/keyfilter.h
 QApplication
 -
 KDBusService
 -
-speechintent.h
-/home/diau/git/mycroft/mycroft-embedded-shell/application/speechintent.h
 appsettings.h
 /home/diau/git/mycroft/mycroft-embedded-shell/application/appsettings.h
 
@@ -68,16 +70,6 @@ QObject
 QScopedPointer
 -
 
-/home/diau/git/mycroft/mycroft-embedded-shell/build/application/mycroft-embedded-shell_autogen/EWIEGA46WW/moc_appsettings.cpp
-memory
--
-../../../../application/appsettings.h
-/home/diau/git/mycroft/mycroft-embedded-shell/application/appsettings.h
-QtCore/qbytearray.h
--
-QtCore/qmetatype.h
--
-
 /home/diau/git/mycroft/mycroft-embedded-shell/build/application/mycroft-embedded-shell_autogen/EWIEGA46WW/moc_speechintent.cpp
 memory
 -
@@ -89,8 +81,6 @@ QtCore/qmetatype.h
 -
 
 /home/diau/git/mycroft/mycroft-embedded-shell/build/application/mycroft-embedded-shell_autogen/mocs_compilation.cpp
-EWIEGA46WW/moc_appsettings.cpp
-/home/diau/git/mycroft/mycroft-embedded-shell/build/application/mycroft-embedded-shell_autogen/EWIEGA46WW/moc_appsettings.cpp
 EWIEGA46WW/moc_speechintent.cpp
 /home/diau/git/mycroft/mycroft-embedded-shell/build/application/mycroft-embedded-shell_autogen/EWIEGA46WW/moc_speechintent.cpp
 
@@ -2221,10 +2211,6 @@ QtCore/qscopedpointer.h
 /opt/kde5/include/QtGui/QCursor
 qcursor.h
 /opt/kde5/include/QtGui/qcursor.h
-
-/opt/kde5/include/QtGui/QGuiApplication
-qguiapplication.h
-/opt/kde5/include/QtGui/qguiapplication.h
 
 /opt/kde5/include/QtGui/QImage
 qimage.h
@@ -4764,5 +4750,15 @@ QtGui/qcursor.h
 QtGui/qkeysequence.h
 -
 QtGui/qevent.h
+-
+
+application/mycroft-embedded-shell_autogen/include/moc_appsettings.cpp
+memory
+-
+../../../../application/appsettings.h
+../application/appsettings.h
+QtCore/qbytearray.h
+-
+QtCore/qmetatype.h
 -
 
