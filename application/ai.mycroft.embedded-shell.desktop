@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=mycroft-embedded-shell
+Icon=mycroft
+Type=Application
+StartupNotify=true
+
+Name=Mycroft Gui Embedded Shell
