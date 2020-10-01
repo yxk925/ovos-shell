@@ -60,11 +60,17 @@ GridLayout {
             iconSource: "image-rotate-symbolic"
             text: "Rotate"
             onClicked: {
-                if (plasmoid.configuration.rotation === "CW") {
-                    plasmoid.configuration.rotation = "NORMAL";
+                if (applicationSettings.rotation === "CW") {
+                    applicationSettings.rotation = "NORMAL";
+                } else if (applicationSettings.rotation === "NORMAL") {
+                    applicationSettings.rotation = "CCW";
+                } else if (applicationSettings.rotation === "CCW") {
+                    applicationSettings.rotation = "UD";
                 } else {
-                    plasmoid.configuration.rotation = "CW";
+                    //if (applicationSettings.rotation === "UD") {
+                    applicationSettings.rotation = "CW";
                 }
+                print(applicationSettings.rotation)
             }
         }
         MuteDelegate {}

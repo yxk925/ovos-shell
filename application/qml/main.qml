@@ -53,9 +53,25 @@ Kirigami.AbstractApplicationWindow {
     }
 
     Rectangle {
+        id: contentsRect
         color: "black"
-        rotation: globalScreenRotation || 0
-        anchors.fill: parent
+        anchors.centerIn: parent
+        rotation: {
+            switch (applicationSettings.rotation) {
+            case "CW":
+                return 90;
+            case "CCW":
+                return -90;
+            case "UD":
+                return 180;
+            case "NORMAL":
+            default:
+                return 0;
+            }
+        }
+        width: rotation === 90 || rotation == -90 ? parent.height : parent.width
+        height: rotation === 90 || rotation == -90 ? parent.width : parent.height
+        
         Image {
             source: "background.png"
             fillMode: Image.PreserveAspectFit
@@ -97,7 +113,7 @@ Kirigami.AbstractApplicationWindow {
                     right: parent.right
                     top: parent.top
                 }
-                height: root.height
+                height: contentsRect.height
             }
         }
         Rectangle {
