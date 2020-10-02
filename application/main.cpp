@@ -52,6 +52,9 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
+    QFont font = app.font();
+    font.setPixelSize(20);
+    app.setFont(font);
     app.setApplicationName(QStringLiteral("mycroft.gui"));
     app.setOrganizationDomain(QStringLiteral("kde.org"));
     app.setWindowIcon(QIcon::fromTheme(QStringLiteral("mycroft")));

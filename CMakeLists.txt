@@ -37,18 +37,11 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
     Core
     Qml
     Network
-    WebSockets
     WebView
+    Widgets
 )
 
-find_package(Qt5Widgets ${QT_MIN_VERSION} REQUIRED)
-find_package(KF5Plasma ${KF5_MIN_VERSION} REQUIRED)
 find_package(KF5DBusAddons ${KF5_MIN_VERSION} REQUIRED)
-find_package(KF5KIO ${KF5_MIN_VERSION} REQUIRED) # FIXME look for "KIOWidgets"
-
-if (BUILD_REMOTE_TTS)
-    find_package(Qt5Multimedia ${QT_MIN_VERSION} REQUIRED)
-endif()
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS I18n)
 

@@ -21,38 +21,8 @@ set(AM_MOC_DEFINITIONS "QT_CORE_LIB;QT_DBUS_LIB;QT_DISABLE_DEPRECATED_BEFORE=0;Q
 set(AM_MOC_INCLUDES "/home/diau/git/mycroft/mycroft-embedded-shell/build/application;/home/diau/git/mycroft/mycroft-embedded-shell/application;/home/diau/git/mycroft/mycroft-embedded-shell/build/application/mycroft-embedded-shell_autogen/include;/home/diau/git/mycroft/mycroft-embedded-shell/build;/opt/kde5/include;/opt/kde5/include/QtCore;/opt/kde5/./mkspecs/linux-g++;/opt/kde5/include/QtQuick;/opt/kde5/include/QtGui;/opt/kde5/include/QtQmlModels;/opt/kde5/include/QtQml;/opt/kde5/include/QtNetwork;/opt/kde5/include/QtWebView;/opt/kde5/include/QtWidgets;/opt/kde5/include/KF5/KDBusAddons;/opt/kde5/include/KF5;/opt/kde5/include/QtDBus;/usr/include")
 set(AM_MOC_OPTIONS "")
 set(AM_MOC_RELAXED_MODE "FALSE")
-set(AM_MOC_MACRO_NAMES "Q_OBJECT;Q_GADGET;Q_NAMESPACE;Q_NAMESPACE_EXPORT;K_PLUGIN_FACTORY;K_PLUGIN_FACTORY_WITH_JSON;K_PLUGIN_CLASS_WITH_JSON;K_EXPORT_KPACKAGE_PACKAGE_WITH_JSON;K_EXPORT_PLASMA_SERVICE;K_EXPORT_PLASMA_APPLET;K_EXPORT_PLASMA_PACKAGE;K_EXPORT_PLASMA_APPLETSCRIPTENGINE;K_EXPORT_PLASMA_DATAENGINESCRIPTENGINE;K_EXPORT_PLASMA_DATAENGINE;K_EXPORT_PLASMA_PACKAGE_WITH_JSON;K_EXPORT_PLASMA_SERVICE_WITH_JSON;K_EXPORT_PLASMA_APPLET_WITH_JSON;K_EXPORT_PLASMA_APPLETSCRIPTENGINE_WITH_JSON;K_EXPORT_PLASMA_DATAENGINESCRIPTENGINE_WITH_JSON;K_EXPORT_PLASMA_CONTAINMENTACTIONS_WITH_JSON;K_EXPORT_PLASMA_DATAENGINE_WITH_JSON")
-set(AM_MOC_DEPEND_FILTERS "K_PLUGIN_FACTORY_WITH_JSON;[
-^][ 	]*K_PLUGIN_FACTORY_WITH_JSON[ 	
-]*\\([^,]*,[ 	
-]*\"([^\"]+)\";K_PLUGIN_CLASS_WITH_JSON;[
-^][ 	]*K_PLUGIN_CLASS_WITH_JSON[ 	
-]*\\([^,]*,[ 	
-]*\"([^\"]+)\";K_EXPORT_KPACKAGE_PACKAGE_WITH_JSON;[
-^][ 	]*K_EXPORT_KPACKAGE_PACKAGE_WITH_JSON[ 	
-]*\\([^,]*,[ 	
-]*\"([^\"]+)\";K_EXPORT_PLASMA_PACKAGE_WITH_JSON;[
-^][ 	]*K_EXPORT_PLASMA_PACKAGE_WITH_JSON[ 	
-]*\\([^,]*,[ 	
-]*\"([^\"]+)\";K_EXPORT_PLASMA_SERVICE_WITH_JSON;[
-^][ 	]*K_EXPORT_PLASMA_SERVICE_WITH_JSON[ 	
-]*\\([^,]*,[^,]*,[ 	
-]*\"([^\"]+)\";K_EXPORT_PLASMA_APPLET_WITH_JSON;[
-^][ 	]*K_EXPORT_PLASMA_APPLET_WITH_JSON[ 	
-]*\\([^,]*,[^,]*,[ 	
-]*\"([^\"]+)\";K_EXPORT_PLASMA_APPLETSCRIPTENGINE_WITH_JSON;[
-^][ 	]*K_EXPORT_PLASMA_APPLETSCRIPTENGINE_WITH_JSON[ 	
-]*\\([^,]*,[^,]*,[ 	
-]*\"([^\"]+)\";K_EXPORT_PLASMA_DATAENGINESCRIPTENGINE_WITH_JSON;[
-^][ 	]*K_EXPORT_PLASMA_DATAENGINESCRIPTENGINE_WITH_JSON[ 	
-]*\\([^,]*,[^,]*,[ 	
-]*\"([^\"]+)\";K_EXPORT_PLASMA_CONTAINMENTACTIONS_WITH_JSON;[
-^][ 	]*K_EXPORT_PLASMA_CONTAINMENTACTIONS_WITH_JSON[ 	
-]*\\([^,]*,[^,]*,[ 	
-]*\"([^\"]+)\";K_EXPORT_PLASMA_DATAENGINE_WITH_JSON;[
-^][ 	]*K_EXPORT_PLASMA_DATAENGINE_WITH_JSON[ 	
-]*\\([^,]*,[^,]*,[ 	
-]*\"([^\"]+)\"")
+set(AM_MOC_MACRO_NAMES "Q_OBJECT;Q_GADGET;Q_NAMESPACE;Q_NAMESPACE_EXPORT")
+set(AM_MOC_DEPEND_FILTERS "")
 set(AM_MOC_PREDEFS_CMD "/usr/lib/icecc/bin/c++;-dM;-E;-c;/usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp")
 # UIC settings
 set(AM_UIC_SKIP )

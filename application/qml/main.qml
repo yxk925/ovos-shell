@@ -20,7 +20,7 @@ import QtQuick 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
-import org.kde.kirigami 2.4 as Kirigami
+import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Window 2.2
 import Mycroft 1.0 as Mycroft
 import QtQuick.Controls.Material 2.0
@@ -39,6 +39,9 @@ Kirigami.AbstractApplicationWindow {
     y: deviceHeight ? Screen.desktopAvailableHeight - height : undefined
 
     Component.onCompleted: {
+        
+        Kirigami.Units.longDuration = 100;
+        Kirigami.Units.shortDuration = 100;
         showMaximized()
     }
 
@@ -87,8 +90,7 @@ Kirigami.AbstractApplicationWindow {
 
         Mycroft.SkillView {
             id: mainView
-            activeSkills.whiteList: singleSkill.length > 0 ? singleSkill : null
-            Kirigami.Theme.colorSet: nightSwitch.checked ? Kirigami.Theme.Complementary : Kirigami.Theme.View
+            Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
             anchors.fill: parent
         }
         Button {
