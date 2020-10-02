@@ -32,8 +32,8 @@ GridLayout {
 
     property bool horizontal: false
     columns: horizontal ? 2 : 1
-    rowSpacing: units.largeSpacing
-    columnSpacing: units.largeSpacing
+    rowSpacing: Kirigami.Units.largeSpacing
+    columnSpacing: Kirigami.Units.largeSpacing
 
     RowLayout {
         Layout.fillWidth: true

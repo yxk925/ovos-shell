@@ -25,10 +25,6 @@ Delegate {
     text: i18n("Standby Face")
     onClicked: {
         Mycroft.MycroftController.sendRequest("mycroft.stop", {});
-        for(var i in plasmoid.nativeInterface) {
-            print(i+" "+plasmoid.nativeInterface[i]);
-        }
-        plasmoid.nativeInterface.requestShowingDesktop();
     }
 }
 
