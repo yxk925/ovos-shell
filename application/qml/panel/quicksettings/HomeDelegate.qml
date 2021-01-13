@@ -22,7 +22,7 @@ import Mycroft 1.0 as Mycroft
 
 Delegate {
     iconSource: "go-home"
-    text: i18n("Standby Face")
+    text: i18n("Homescreen")
     onClicked: {
         Mycroft.MycroftController.sendRequest("mycroft.stop", {});
     }

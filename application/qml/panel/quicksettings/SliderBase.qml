@@ -50,10 +50,12 @@ Controls.Control {
                     isMask: true
                     Layout.preferredWidth: Kirigami.Units.iconSizes.medium
                     Layout.preferredHeight: Layout.preferredWidth
+                    color: "white"
                 }
                 Controls.Label {
                     text: Math.round(slider.position * 10)
                     Layout.preferredWidth: textMetrics.width
+                    color: "white"
                     TextMetrics {
                         id
                         : textMetrics
@@ -70,7 +72,7 @@ Controls.Control {
                     anchors.horizontalCenter: parent.horizontalCenter
                     y: slider.height - slider.position * (slider.height - height) - height
                     
-                    color: "orange"
+                    color: "#CD5C5C"
                     radius: height
                     implicitWidth: Kirigami.Units.gridUnit * 3
                     implicitHeight: Kirigami.Units.gridUnit
@@ -104,6 +106,6 @@ Controls.Control {
 
     background: Rectangle {
         radius: Kirigami.Units.largeSpacing
-        color: Kirigami.Theme.backgroundColor
+        color: "#363636"
     }
 }

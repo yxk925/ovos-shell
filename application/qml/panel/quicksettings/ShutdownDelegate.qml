@@ -19,13 +19,12 @@ import QtQuick 2.1
 import QtQuick.Layouts 1.1
 import org.kde.kirigami 2.5 as Kirigami
 import Mycroft 1.0 as Mycroft
-import Mycroft.Private.Mark2SystemAccess 1.0
 
 Delegate {
     iconSource: "system-shutdown"
     text: i18n("Turn Off")
     onClicked: {
-        Mark2SystemAccess.requestShutdown();
+        Mycroft.MycroftController.sendRequest("mycroft.device.settings.poweroff", {})
     }
 }
 

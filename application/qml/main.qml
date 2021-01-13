@@ -39,7 +39,6 @@ Kirigami.AbstractApplicationWindow {
     y: deviceHeight ? Screen.desktopAvailableHeight - height : undefined
 
     Component.onCompleted: {
-        
         Kirigami.Units.longDuration = 100;
         Kirigami.Units.shortDuration = 100;
         showMaximized()
@@ -86,6 +85,16 @@ Kirigami.AbstractApplicationWindow {
                     easing.type: Easing.InQuad
                 }
             }
+        }
+        
+        Mycroft.StatusIndicator {
+            id: si
+            anchors {
+                top: parent.top
+                right: parent.right
+                margins: Kirigami.Units.largeSpacing
+            }
+            z: 999
         }
 
         Mycroft.SkillView {
