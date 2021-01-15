@@ -37,6 +37,7 @@ Kirigami.AbstractApplicationWindow {
     maximumWidth : deviceWidth || undefined
     x: deviceWidth ? Screen.desktopAvailableHeight - width : undefined
     y: deviceHeight ? Screen.desktopAvailableHeight - height : undefined
+    flags: Qt.FramelessWindowHint
 
     Component.onCompleted: {
         Kirigami.Units.longDuration = 100;
