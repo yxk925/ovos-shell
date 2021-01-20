@@ -24,7 +24,7 @@ import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Window 2.2
 import Mycroft 1.0 as Mycroft
 import QtQuick.Controls.Material 2.0
-
+import QtQuick.VirtualKeyboard 2.2
 import "./panel" as Panel
 
 Kirigami.AbstractApplicationWindow {
@@ -103,6 +103,14 @@ Kirigami.AbstractApplicationWindow {
             Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
             anchors.fill: parent
         }
+        
+        InputPanel {
+            id: inputPanel
+            active:  Qt.inputMethod.visible
+            visible: active
+            width: parent.width
+        }
+        
         Button {
             anchors.centerIn: parent
             text: "start"
