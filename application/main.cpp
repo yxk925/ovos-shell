@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
 
 
     qputenv("QT_WAYLAND_FORCE_DPI", parser.value(dpiOption).toLatin1());
+    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
 
     QApplication app(argc, argv);
 
