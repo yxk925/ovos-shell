@@ -109,6 +109,7 @@ Kirigami.AbstractApplicationWindow {
             active:  Qt.inputMethod.visible
             visible: active
             width: parent.width
+            height: parent.height
         }
         
         Button {
