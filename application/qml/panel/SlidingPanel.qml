@@ -158,7 +158,7 @@ Item {
                 }
                 QuickSettings {
                     id: quickSettings
-                    horizontal: root.horizontal
+                    horizontalMode: root.horizontal
                     Layout.fillWidth: true
                     onDelegateClicked: root.close();
                 }

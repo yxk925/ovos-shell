@@ -22,7 +22,7 @@ import Mycroft 1.0 as Mycroft
 
 Delegate {
     iconSource: "settings-configure"
-    text: i18n("Additional Settings")
+    //text: i18n("Additional Settings")
     onClicked: {
         Mycroft.MycroftController.sendRequest("mycroft.device.settings", {})
     }

@@ -23,7 +23,7 @@ import Mycroft 1.0 as Mycroft
 
 Delegate {
     iconSource: connectionIconProvider.connectionIcon
-    text: i18n("Wireless Settings")
+    //text: i18n("Wireless Settings")
 
 //BEGIN NetworkManager
     PlasmaNM.NetworkStatus {

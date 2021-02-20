@@ -22,7 +22,7 @@ import Mycroft 1.0 as Mycroft
 
 Delegate {
     iconSource: "system-shutdown"
-    text: i18n("Turn Off")
+    //text: i18n("Turn Off")
     onClicked: {
         Mycroft.MycroftController.sendRequest("mycroft.device.settings.poweroff", {})
     }

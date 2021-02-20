@@ -24,7 +24,7 @@ import org.kde.plasma.private.volume 0.1 as PA
 Delegate {
     id: delegate
     iconSource: toggled ? "audio-volume-high" : "audio-volume-muted"
-    text: toggled ? i18n("Unmute") : i18n("Mute")
+    //text: toggled ? i18n("Unmute") : i18n("Mute")
 
     onToggledChanged: paSinkModel.preferredSink.muted = toggled
 

@@ -1,4 +1,5 @@
 /*
+ * Copyright 2020 Aditya Mehra <Aix.m@outlook.com>
  * Copyright 2018 by Marco Martin <mart@kde.org>
  * Copyright 2018 David Edmundson <davidedmundson@kde.org>
  *
@@ -24,25 +25,17 @@ import org.kde.kirigami 2.9 as Kirigami
 import QtQuick.Window 2.2
 import Mycroft 1.0 as Mycroft
 import QtQuick.Controls.Material 2.0
-import QtQuick.VirtualKeyboard 2.2
 import "./panel" as Panel
 
 Kirigami.AbstractApplicationWindow {
     id: root
     visible: true
-
-    minimumHeight : deviceHeight || undefined
-    maximumHeight : deviceHeight || undefined
-    minimumWidth : deviceWidth || undefined
-    maximumWidth : deviceWidth || undefined
-    x: deviceWidth ? Screen.desktopAvailableHeight - width : undefined
-    y: deviceHeight ? Screen.desktopAvailableHeight - height : undefined
+    visibility: "Maximized"
     flags: Qt.FramelessWindowHint
 
     Component.onCompleted: {
         Kirigami.Units.longDuration = 100;
         Kirigami.Units.shortDuration = 100;
-        showMaximized()
     }
 
     Timer {
@@ -61,15 +54,15 @@ Kirigami.AbstractApplicationWindow {
         anchors.centerIn: parent
         rotation: {
             switch (applicationSettings.rotation) {
-            case "CW":
-                return 90;
-            case "CCW":
-                return -90;
-            case "UD":
-                return 180;
-            case "NORMAL":
-            default:
-                return 0;
+                case "CW":
+                    return 90;
+                case "CCW":
+                    return -90;
+                case "UD":
+                    return 180;
+                case "NORMAL":
+                default:
+                    return 0;
             }
         }
         width: rotation === 90 || rotation == -90 ? parent.height : parent.width
@@ -88,21 +81,29 @@ Kirigami.AbstractApplicationWindow {
             }
         }
         
-        Mycroft.StatusIndicator {
+        StatusIndicator {
             id: si
             anchors {
                 top: parent.top
                 right: parent.right
                 margins: Kirigami.Units.largeSpacing
             }
-            z: 999
+            z: 998
         }
 
         Mycroft.SkillView {
             id: mainView
             Kirigami.Theme.colorSet: Kirigami.Theme.Complementary
             anchors.fill: parent
+
+            ListenerAnimation {
+                id: listenerAnimator
+                anchors.fill: parent
+            }
         }
+<<<<<<< HEAD
+                
+=======
         
         InputPanel {
             id: inputPanel
@@ -112,6 +113,7 @@ Kirigami.AbstractApplicationWindow {
             height: parent.height
         }
         
+>>>>>>> ac1d1b2d856ad8688b7617722df219d13d2984eb
         Button {
             anchors.centerIn: parent
             text: "start"
@@ -136,6 +138,7 @@ Kirigami.AbstractApplicationWindow {
                 }
                 height: contentsRect.height
             }
+            z: 999
         }
         Rectangle {
             anchors.fill: parent

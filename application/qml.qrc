@@ -18,5 +18,7 @@
         <file alias="panel/quicksettings/WirelessDelegate.qml">qml/panel/quicksettings/WirelessDelegate.qml</file>
         <file alias="panel/quicksettings/brightness-decrease.svg">qml/panel/quicksettings/brightness-decrease.svg</file>
         <file alias="panel/quicksettings/brightness-increase.svg">qml/panel/quicksettings/brightness-increase.svg</file>
+        <file>StatusIndicator.qml</file>
+        <file>ListenerAnimation.qml</file>
     </qresource>
 </RCC>

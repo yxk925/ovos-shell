@@ -1,4 +1,5 @@
 /*
+ * Copyright 2020 Aditya Mehra <Aix.m@outlook.com>
  * Copyright 2018 by Marco Martin <mart@kde.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +18,7 @@
 
 import QtQuick 2.1
 import QtQuick.Layouts 1.1
+import QtGraphicalEffects 1.0
 import QtQuick.Controls 2.2 as Controls
 import org.kde.kirigami 2.5 as Kirigami
 
@@ -24,7 +26,6 @@ Controls.Control {
     id: delegateRoot
     property bool toggled
     property alias iconSource: icon.source
-    property alias text: label.text
 
     signal clicked(var mouse)
 
@@ -46,21 +47,19 @@ Controls.Control {
             color: iconMouseArea.pressed ? Kirigami.Theme.highlightedTextColor : "#CD5C5C"
             Layout.preferredWidth: Kirigami.Units.iconSizes.medium
             Layout.preferredHeight: Layout.preferredWidth
-            Layout.alignment: Qt.AlignVCenter
-        }
-        Controls.Label {
-            id: label
-            Layout.fillWidth: true
-            text: model.text
-            font.bold: true
-            color: iconMouseArea.pressed ? Kirigami.Theme.highlightedTextColor : "white"
-            //visible: paintedWidth <= parent.width
-            elide: Text.ElideRight
+            Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
         }
     }
     background: Rectangle {
         radius: Kirigami.Units.largeSpacing
-        color: "#363636"
+        color: "#313131"
+        layer.enabled: true
+        layer.effect: DropShadow {
+            samples: 16
+            transparentBorder: true
+            horizontalOffset: 4
+            verticalOffset: 4
+        }
     }
     MouseArea {
         id: iconMouseArea

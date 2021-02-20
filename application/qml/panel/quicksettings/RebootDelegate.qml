@@ -22,7 +22,7 @@ import Mycroft 1.0 as Mycroft
 
 Delegate {
     iconSource: "system-reboot"
-    text: i18n("Restart")
+    //text: i18n("Restart")
     onClicked: {
         Mycroft.MycroftController.sendRequest("mycroft.device.settings.restart", {})
     }

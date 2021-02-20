@@ -1,4 +1,5 @@
 /*
+ * Copyright 2020 Aditya Mehra <Aix.m@outlook.com>
  * Copyright 2018 by Marco Martin <mart@kde.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -25,57 +26,72 @@ GridLayout {
     id: root
 
     signal delegateClicked
-
-    function toggleAirplane() {
-        print("toggle airplane mode")
-    }
-
-    property bool horizontal: false
-    columns: horizontal ? 2 : 1
+    property bool horizontalMode: false
+    columns: 1
     rowSpacing: Kirigami.Units.largeSpacing
     columnSpacing: Kirigami.Units.largeSpacing
-
-    RowLayout {
-        Layout.fillWidth: true
-        spacing: Kirigami.Units.largeSpacing * 2
-        BrightnessSlider {
-            Layout.fillWidth: true
-        }
-        VolumeSlider {
-            Layout.fillWidth: true
-        }
-    }
-
+    property int delegateSize: horizontalMode ? Kirigami.Units.iconSizes.large : Kirigami.Units.iconSizes.small
     ColumnLayout {
         id: buttonsLayout
         Layout.fillWidth: true
         Layout.minimumWidth: 0
         spacing: Kirigami.Units.largeSpacing * 2
 
-        property int delegateSize: Kirigami.Units.iconSizes.medium * 2 + Kirigami.Units.smallSpacing*2
+        BrightnessSlider {
+            Layout.fillWidth: true
+        }
+        VolumeSlider {
+            Layout.fillWidth: true
+        }
 
-        HomeDelegate {}
-        //WirelessDelegate {}
-        Delegate {
-            iconSource: "image-rotate-symbolic"
-            text: "Rotate"
-            onClicked: {
-                if (applicationSettings.rotation === "CW") {
-                    applicationSettings.rotation = "NORMAL";
-                } else if (applicationSettings.rotation === "NORMAL") {
-                    applicationSettings.rotation = "CCW";
-                } else if (applicationSettings.rotation === "CCW") {
-                    applicationSettings.rotation = "UD";
-                } else {
-                    //if (applicationSettings.rotation === "UD") {
-                    applicationSettings.rotation = "CW";
+        RowLayout {
+            Layout.fillWidth: true
+            HomeDelegate {
+                Layout.minimumWidth: delegateSize
+                leftPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+                rightPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+            }
+            //WirelessDelegate {}
+            Delegate {
+                Layout.minimumWidth: delegateSize
+                iconSource: "image-rotate-symbolic"
+                //text: "Rotate"
+                leftPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+                rightPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+                onClicked: {
+                    if (applicationSettings.rotation === "CW") {
+                        applicationSettings.rotation = "NORMAL";
+                    } else if (applicationSettings.rotation === "NORMAL") {
+                        applicationSettings.rotation = "CCW";
+                    } else if (applicationSettings.rotation === "CCW") {
+                        applicationSettings.rotation = "UD";
+                    } else {
+                        //if (applicationSettings.rotation === "UD") {
+                        applicationSettings.rotation = "CW";
+                    }
+                    print(applicationSettings.rotation)
                 }
-                print(applicationSettings.rotation)
+            }
+            MuteDelegate {
+                Layout.minimumWidth: delegateSize
+                leftPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+                rightPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+            }
+            AdditionalSettingsDelegate {
+                Layout.minimumWidth: delegateSize
+                leftPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+                rightPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+            }
+            RebootDelegate {
+                Layout.minimumWidth: delegateSize
+                leftPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+                rightPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+            }
+            ShutdownDelegate {
+                Layout.minimumWidth: delegateSize
+                leftPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
+                rightPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
             }
         }
-        MuteDelegate {}
-        AdditionalSettingsDelegate {}
-        RebootDelegate {}
-        ShutdownDelegate {}
     }
 }

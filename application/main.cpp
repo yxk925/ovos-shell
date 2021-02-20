@@ -1,4 +1,5 @@
 /*
+ * Copyright 2020 Aditya Mehra <Aix.m@outlook.com>
  * Copyright 2018 by Marco Martin <mart@kde.org>
  * Copyright 2018 David Edmundson <davidedmundson@kde.org>
  *
@@ -49,7 +50,6 @@ int main(int argc, char *argv[])
 
 
     qputenv("QT_WAYLAND_FORCE_DPI", parser.value(dpiOption).toLatin1());
-    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
 
     QApplication app(argc, argv);
 

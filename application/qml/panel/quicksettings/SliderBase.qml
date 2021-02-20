@@ -1,4 +1,5 @@
 /*
+ * Copyright 2020 Aditya Mehra <Aix.m@outlook.com>
  * Copyright 2018 by Marco Martin <mart@kde.org>
  * Copyright 2018 David Edmundson <davidedmundson@kde.org>
  *
@@ -35,11 +36,11 @@ Controls.Control {
 
     //Layout.preferredWidth: Kirigami.Units.gridUnit * 5
     Layout.fillWidth: true
-    Layout.preferredHeight: Kirigami.Units.gridUnit * 15
+    Layout.preferredHeight: Kirigami.Units.gridUnit * 3
     contentItem: MouseArea {
         //to not cause unwanted scrolls
         preventStealing: true
-        ColumnLayout {
+        RowLayout {
             anchors.fill: parent
             spacing: Kirigami.Units.smallSpacing
 
@@ -65,39 +66,29 @@ Controls.Control {
             }
             T.Slider {
                 id: slider
-                orientation: Qt.Vertical
                 Layout.fillWidth: true
                 Layout.fillHeight: true
                 handle: Rectangle {
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    y: slider.height - slider.position * (slider.height - height) - height
-                    
+                    anchors.verticalCenter: parent.verticalCenter
+                    x: slider.visualPosition * (slider.width - width)
+
                     color: "#CD5C5C"
-                    radius: height
+                    radius: width
                     implicitWidth: Kirigami.Units.gridUnit * 3
-                    implicitHeight: Kirigami.Units.gridUnit
+                    implicitHeight: Kirigami.Units.gridUnit * 2
                 }
 
-                background: Item {
+                background: Rectangle {
+                    y: (slider.height - height) / 2
+                    height: Kirigami.Units.gridUnit * 2
+                    radius: width
+                    color: Qt.rgba(0.2, 0.2, 0.2, 0.8)
+
                     Rectangle {
-                        anchors {
-                            top: parent.top
-                            bottom: parent.bottom
-                            horizontalCenter: parent.horizontalCenter
-                        }
-                        width: Math.round(Kirigami.Units.gridUnit / 2)
-                        color: Qt.rgba(0.2, 0.2, 0.2, 0.6)
-                        radius: width
-                        Rectangle {
-                            color: Kirigami.Theme.highlightColor
-                            anchors {
-                                left: parent.left
-                                right: parent.right
-                                bottom: parent.bottom
-                            }
-                            radius: width
-                            height: slider.position * (slider.height - width) + width
-                        }
+                        width: slider.visualPosition * parent.width
+                        height: parent.height
+                        color: Qt.rgba(0.4, 0.4, 0.4, 0.8)
+                        radius: 100
                     }
                 }
             }
@@ -106,6 +97,6 @@ Controls.Control {
 
     background: Rectangle {
         radius: Kirigami.Units.largeSpacing
-        color: "#363636"
+        color: "#313131"
     }
 }
