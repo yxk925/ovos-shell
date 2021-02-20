@@ -101,19 +101,7 @@ Kirigami.AbstractApplicationWindow {
                 anchors.fill: parent
             }
         }
-<<<<<<< HEAD
-                
-=======
-        
-        InputPanel {
-            id: inputPanel
-            active:  Qt.inputMethod.visible
-            visible: active
-            width: parent.width
-            height: parent.height
-        }
-        
->>>>>>> ac1d1b2d856ad8688b7617722df219d13d2984eb
+
         Button {
             anchors.centerIn: parent
             text: "start"
