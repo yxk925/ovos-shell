@@ -208,6 +208,14 @@ Item {
                 root.state = "loading";
             }
         }
+        onIntentRecevied: {
+            if(type == "balena.wifi.setup.started"){
+                root.state = "ok";
+            }
+            if(type == "balena.wifi.setup.completed"){
+                root.state = "loading";
+            }
+        }
     }
 
     Rectangle {
