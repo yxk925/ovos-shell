@@ -21,7 +21,7 @@ import org.kde.kirigami 2.5 as Kirigami
 import Mycroft 1.0 as Mycroft
 
 Delegate {
-    iconSource: "go-home"
+    iconSource: "qrc://icons/home"
     //text: i18n("Homescreen")
     onClicked: {
         Mycroft.MycroftController.sendRequest("mycroft.stop", {});

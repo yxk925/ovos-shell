@@ -21,7 +21,7 @@ import org.kde.kirigami 2.5 as Kirigami
 import Mycroft 1.0 as Mycroft
 
 Delegate {
-    iconSource: "system-reboot"
+    iconSource: "qrc://icons/system-reboot"
     //text: i18n("Restart")
     onClicked: {
         Mycroft.MycroftController.sendRequest("mycroft.device.settings.restart", {})

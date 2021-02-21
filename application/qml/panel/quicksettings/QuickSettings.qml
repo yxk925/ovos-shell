@@ -54,7 +54,7 @@ GridLayout {
             //WirelessDelegate {}
             Delegate {
                 Layout.minimumWidth: delegateSize
-                iconSource: "image-rotate-symbolic"
+                iconSource: "qrc://icons/screen-rotate"
                 //text: "Rotate"
                 leftPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing
                 rightPadding: horizontalMode ? Kirigami.Units.largeSpacing : Kirigami.Units.smallSpacing

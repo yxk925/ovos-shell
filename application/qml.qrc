@@ -20,5 +20,12 @@
         <file alias="panel/quicksettings/brightness-increase.svg">qml/panel/quicksettings/brightness-increase.svg</file>
         <file>StatusIndicator.qml</file>
         <file>ListenerAnimation.qml</file>
+        <file>icons/configure.svg</file>
+        <file>icons/home.svg</file>
+        <file>icons/screen-rotate.svg</file>
+        <file>icons/system-reboot.svg</file>
+        <file>icons/system-shutdown.svg</file>
+        <file>icons/volume-high.svg</file>
+        <file>icons/volume-mute.svg</file>
     </qresource>
 </RCC>

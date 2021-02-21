@@ -21,7 +21,7 @@ import org.kde.kirigami 2.5 as Kirigami
 import Mycroft 1.0 as Mycroft
 
 Delegate {
-    iconSource: "system-shutdown"
+    iconSource: "qrc://icons/system-shutdown"
     //text: i18n("Turn Off")
     onClicked: {
         Mycroft.MycroftController.sendRequest("mycroft.device.settings.poweroff", {})
