@@ -209,10 +209,10 @@ Item {
             }
         }
         onIntentRecevied: {
-            if(type == "balena.wifi.setup.started"){
+            if(type == "ovos.wifi.setup.started"){
                 root.state = "ok";
             }
-            if(type == "balena.wifi.setup.completed"){
+            if(type == "ovos.wifi.setup.completed"){
                 root.state = "loading";
             }
         }
