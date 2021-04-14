@@ -30,8 +30,10 @@ import "./panel" as Panel
 Kirigami.AbstractApplicationWindow {
     id: root
     visible: true
-    visibility: "Maximized"
-    flags: Qt.FramelessWindowHint
+    //visibility: "Maximized"
+    //flags: Qt.FramelessWindowHint
+    width: 800
+    height: 480
 
     Component.onCompleted: {
         Kirigami.Units.longDuration = 100;
@@ -100,6 +102,13 @@ Kirigami.AbstractApplicationWindow {
                 id: listenerAnimator
                 anchors.fill: parent
             }
+        }
+
+        FastBlur {
+            anchors.fill: mainView
+            source: mainView
+            radius: 50
+            opacity: slidingPanel.position <= 0 ? 0 : 1
         }
 
         Button {

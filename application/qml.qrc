@@ -27,5 +27,6 @@
         <file>icons/system-shutdown.svg</file>
         <file>icons/volume-high.svg</file>
         <file>icons/volume-mute.svg</file>
+        <file alias="panel/quicksettings/RotationDelegate.qml">qml/panel/quicksettings/RotationDelegate.qml</file>
     </qresource>
 </RCC>

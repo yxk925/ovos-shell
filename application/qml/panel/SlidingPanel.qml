@@ -20,6 +20,7 @@ import QtQuick.Controls 2.2 as Controls
 import QtQuick.Layouts 1.1
 import QtQuick.Window 2.2
 import org.kde.kirigami 2.5 as Kirigami
+import QtGraphicalEffects 1.0
 import "quicksettings"
 
 Item {
@@ -55,9 +56,9 @@ Item {
     }
 
     Rectangle {
-        anchors.fill:parent
+        anchors.fill: parent
         color: "black"
-        opacity: Math.min(1, root.position) * 0.8
+        opacity: Math.min(1, root.position) * 0.6
         visible: root.position > 0
     }
 
@@ -158,7 +159,6 @@ Item {
                 }
                 QuickSettings {
                     id: quickSettings
-                    horizontalMode: root.horizontal
                     Layout.fillWidth: true
                     onDelegateClicked: root.close();
                 }

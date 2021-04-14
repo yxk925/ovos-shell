@@ -34,7 +34,6 @@ Controls.Control {
     topPadding: Kirigami.Units.largeSpacing
     bottomPadding: Kirigami.Units.largeSpacing
 
-    //Layout.preferredWidth: Kirigami.Units.gridUnit * 5
     Layout.fillWidth: true
     Layout.preferredHeight: Kirigami.Units.gridUnit * 3
     contentItem: MouseArea {
@@ -42,28 +41,16 @@ Controls.Control {
         preventStealing: true
         RowLayout {
             anchors.fill: parent
-            spacing: Kirigami.Units.smallSpacing
+            spacing: Kirigami.Units.largeSpacing
 
-            RowLayout {
-                Layout.alignment: Qt.AlignHCenter
-                Kirigami.Icon {
-                    id: icon
-                    isMask: true
-                    Layout.preferredWidth: Kirigami.Units.iconSizes.medium
-                    Layout.preferredHeight: Layout.preferredWidth
-                    color: "white"
-                }
-                Controls.Label {
-                    text: Math.round(slider.position * 10)
-                    Layout.preferredWidth: textMetrics.width
-                    color: "white"
-                    TextMetrics {
-                        id
-                        : textMetrics
-                        text: "10"
-                    }
-                }
+            Kirigami.Icon {
+                id: icon
+                isMask: true
+                Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+                Layout.preferredHeight: Layout.preferredWidth
+                color: "#a70f1b"
             }
+
             T.Slider {
                 id: slider
                 Layout.fillWidth: true
@@ -71,23 +58,36 @@ Controls.Control {
                 handle: Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
                     x: slider.visualPosition * (slider.width - width)
-
-                    color: "#CD5C5C"
+                    color: "#a70f1b"
                     radius: width
                     implicitWidth: Kirigami.Units.gridUnit * 3
                     implicitHeight: Kirigami.Units.gridUnit * 2
+
+                    Controls.Label {
+                        text: Math.round(slider.position * 10)
+                        anchors.centerIn: parent
+                        Layout.preferredWidth: textMetrics.width
+                        color: "white"
+                        TextMetrics {
+                            id
+                            : textMetrics
+                            text: "10"
+                        }
+                    }
                 }
 
                 background: Rectangle {
+                    x: slider.leftPadding
                     y: (slider.height - height) / 2
-                    height: Kirigami.Units.gridUnit * 2
+                    width: slider.availableWidth
+                    height: Kirigami.Units.gridUnit * 1.25
                     radius: width
                     color: Qt.rgba(0.2, 0.2, 0.2, 0.8)
 
                     Rectangle {
                         width: slider.visualPosition * parent.width
                         height: parent.height
-                        color: Qt.rgba(0.4, 0.4, 0.4, 0.8)
+                        color: Qt.rgba(0.9, 0.9, 0.9, 0.8)
                         radius: 100
                     }
                 }
@@ -97,6 +97,6 @@ Controls.Control {
 
     background: Rectangle {
         radius: Kirigami.Units.largeSpacing
-        color: "#313131"
+        color: Qt.rgba(255, 255, 255, 0.4)//"#a70f1b" //"#313131"
     }
 }

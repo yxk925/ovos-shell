@@ -38,29 +38,32 @@ Controls.Control {
     implicitHeight: contentItem.implicitHeight + topPadding + bottomPadding
 
     Layout.fillWidth: true
+    Layout.maximumWidth: Kirigami.Units.iconSizes.huge * 2 + leftPadding + rightPadding
 
     contentItem: RowLayout {
         spacing: Kirigami.Units.largeSpacing
         Kirigami.Icon {
             id: icon
             isMask: true
-            color: iconMouseArea.pressed ? Kirigami.Theme.highlightedTextColor : "#CD5C5C"
-            Layout.preferredWidth: Kirigami.Units.iconSizes.medium
+            color: iconMouseArea.pressed ? Kirigami.Theme.highlightedTextColor : "white"
+            Layout.preferredWidth: parent.width / 2
             Layout.preferredHeight: Layout.preferredWidth
             Layout.alignment: Qt.AlignVCenter | Qt.AlignHCenter
         }
     }
+
     background: Rectangle {
         radius: Kirigami.Units.largeSpacing
-        color: "#313131"
+        color: "#a70f1b"//Qt.rgba(255, 255, 255, 0.3)
         layer.enabled: true
         layer.effect: DropShadow {
             samples: 16
             transparentBorder: true
-            horizontalOffset: 4
-            verticalOffset: 4
+            horizontalOffset: 2
+            verticalOffset: 2
         }
     }
+
     MouseArea {
         id: iconMouseArea
         anchors.fill: parent
