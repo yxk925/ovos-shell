@@ -108,14 +108,8 @@ Kirigami.AbstractApplicationWindow {
             anchors.fill: mainView
             source: mainView
             radius: 50
-            opacity: slidingPanel.position <= 0 ? 0 : 1
-        }
-
-        Button {
-            anchors.centerIn: parent
-            text: "start"
-            visible: Mycroft.MycroftController.status == Mycroft.MycroftController.Closed
-            onClicked: Mycroft.MycroftController.start();
+            visible: slidingPanel.position > 0.5 ? 1 : 0
+            opacity: slidingPanel.position > 0.5 ? 1 : 0
         }
 
         Item {
