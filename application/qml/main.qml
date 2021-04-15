@@ -30,10 +30,8 @@ import "./panel" as Panel
 Kirigami.AbstractApplicationWindow {
     id: root
     visible: true
-    //visibility: "Maximized"
-    //flags: Qt.FramelessWindowHint
-    width: 800
-    height: 480
+    visibility: "Maximized"
+    flags: Qt.FramelessWindowHint
 
     Component.onCompleted: {
         Kirigami.Units.longDuration = 100;
