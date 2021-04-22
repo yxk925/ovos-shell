@@ -215,6 +215,9 @@ Item {
             if(type == "ovos.wifi.setup.completed"){
                 root.state = "loading";
             }
+	    if(type == "ovos.shell.status.ok"){
+		root.state = "ok";
+	    }
         }
     }
 
