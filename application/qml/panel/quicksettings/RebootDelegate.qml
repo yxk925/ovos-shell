@@ -24,7 +24,7 @@ Delegate {
     iconSource: "qrc://icons/system-reboot"
     //text: i18n("Restart")
     onClicked: {
-        Mycroft.MycroftController.sendRequest("mycroft.device.settings.restart", {})
+        Mycroft.MycroftController.sendRequest("system.reboot", {})
     }
 }
 

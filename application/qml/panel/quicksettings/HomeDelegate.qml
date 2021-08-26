@@ -24,7 +24,7 @@ Delegate {
     iconSource: "qrc://icons/home"
     //text: i18n("Homescreen")
     onClicked: {
-        Mycroft.MycroftController.sendRequest("mycroft.stop", {});
+        Mycroft.MycroftController.sendRequest("system.display.homescreen", {});
     }
 }
 

@@ -24,7 +24,7 @@ Delegate {
     iconSource: "qrc://icons/system-shutdown"
     //text: i18n("Turn Off")
     onClicked: {
-        Mycroft.MycroftController.sendRequest("mycroft.device.settings.poweroff", {})
+        Mycroft.MycroftController.sendRequest("system.shutdown", {})
     }
 }
 
