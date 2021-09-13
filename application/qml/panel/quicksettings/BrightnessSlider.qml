@@ -16,6 +16,7 @@
  */
 
 import QtQuick 2.9
+import Mycroft 1.0 as Mycroft
 
 SliderBase {
     id: root
@@ -28,5 +29,13 @@ SliderBase {
     }
     slider.from: 0
     slider.to: 1
-}
 
+    Connections {
+        target: Mycroft.MycroftController
+	onIntentRecevied: {
+	    if (type == "mycroft.display.set.brightness") {
+                slider.value = data.percent;
+            }
+	}
+    }
+}
