@@ -117,7 +117,7 @@ Kirigami.AbstractApplicationWindow {
                 top: parent.top
             }
             height: Kirigami.Units.gridUnit * 2
-            clip: slidingPanel.position <= 0
+            clip: slidingPanel.position <= 0.25
             Panel.SlidingPanel {
                 id: slidingPanel
                 anchors {
