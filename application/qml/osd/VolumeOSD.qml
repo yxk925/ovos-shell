@@ -1,7 +1,5 @@
 /*
  * Copyright 2021 by Aditya Mehra <aix.m@outlook.com>
- * Copyright 2018 by Marco Martin <mart@kde.org>
- * Copyright 2018 David Edmundson <davidedmundson@kde.org>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,35 +18,42 @@
 import QtQuick 2.9
 import Mycroft 1.0 as Mycroft
 
-SliderBase {
+SliderControl {
     id: root
     iconSource: "qrc://icons/volume-high"
-    property real changeValue: slider.value
+    visible: false
+    property var refSlidingPanel
 
-    slider.from: 0
-    slider.to: 100
-    slider.stepSize: 10
-    sliderButtonLabel: Math.round(slider.position * 100)
-
-    onChangeValueChanged: {
-        Mycroft.MycroftController.sendRequest("mycroft.volume.set.gui", {"percent": (changeValue / 100)});
+    onRefSlidingPanelChanged: {
+        if(refSlidingPanel > 1) {
+            visible = false
+            feedbackTimer.stop()
+        }
     }
 
-    Component.onCompleted: {
-        Mycroft.MycroftController.sendRequest("mycroft.volume.get", {});
+    onChangeValueChanged: {
+        Mycroft.MycroftController.sendRequest("mycroft.volume.set.gui", {"percent": changeValue});
+        feedbackTimer.restart()
     }
 
     Connections {
         target: Mycroft.MycroftController
-        onSocketStatusChanged: {
-            if (Mycroft.MycroftController.status == Mycroft.MycroftController.Open) {
-                Mycroft.MycroftController.sendRequest("mycroft.volume.get", {});
-            }
-        }
+
         onIntentRecevied: {
             if (type == "mycroft.volume.get.response") {
-                slider.value = data.percent * 100;
+                root.visible = true
+                root.value = Math.round(data.percent * 100);
+                feedbackTimer.restart()
             }
+        }
+    }
+
+    Timer {
+        id: feedbackTimer
+        interval: 5000
+
+        onTriggered: {
+            root.visible = false
         }
     }
 }

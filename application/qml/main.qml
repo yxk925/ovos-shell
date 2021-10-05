@@ -26,6 +26,7 @@ import QtQuick.Window 2.2
 import Mycroft 1.0 as Mycroft
 import QtQuick.Controls.Material 2.0
 import "./panel" as Panel
+import "./osd" as Osd
 
 Kirigami.AbstractApplicationWindow {
     id: root
@@ -89,6 +90,26 @@ Kirigami.AbstractApplicationWindow {
                 margins: Kirigami.Units.largeSpacing
             }
             z: 998
+        }
+
+        Item {
+            anchors.fill: parent
+            visible: slidingPanel.position < 0.05
+            enabled: slidingPanel.position < 0.05
+            z: 10
+
+            Osd.VolumeOSD {
+                id: volumeOSD
+                width: parent.width - Kirigami.Units.gridUnit
+                height: Kirigami.Units.gridUnit * 3
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.margins: Mycroft.Units.gridUnit * 2
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: parent.height * 0.25
+                refSlidingPanel: slidingPanel.position
+                horizontalMode: root.width > root.height ? 1 : 0
+            }
         }
 
         Mycroft.SkillView {

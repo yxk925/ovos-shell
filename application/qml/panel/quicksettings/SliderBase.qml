@@ -28,6 +28,7 @@ Controls.Control {
 
     property alias iconSource: icon.source
     property alias slider: slider
+    property alias sliderButtonLabel: sliderButtonLabel.text
 
     leftPadding: Kirigami.Units.largeSpacing
     rightPadding: Kirigami.Units.largeSpacing
@@ -64,6 +65,7 @@ Controls.Control {
                     implicitHeight: Kirigami.Units.gridUnit * 2
 
                     Controls.Label {
+                        id: sliderButtonLabel
                         text: Math.round(slider.position * 10)
                         anchors.centerIn: parent
                         Layout.preferredWidth: textMetrics.width
