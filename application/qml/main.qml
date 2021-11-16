@@ -39,6 +39,12 @@ Kirigami.AbstractApplicationWindow {
         Kirigami.Units.shortDuration = 100;
     }
 
+    Loader {
+        anchors.fill: parent
+        source: "Keyboard.qml"
+        z: 1000
+    }
+
     Timer {
         interval: 20000
         running: Mycroft.GlobalSettings.autoConnect && Mycroft.MycroftController.status != Mycroft.MycroftController.Open
@@ -120,6 +126,10 @@ Kirigami.AbstractApplicationWindow {
             ListenerAnimation {
                 id: listenerAnimator
                 anchors.fill: parent
+            }
+
+            NotificationsSystem {
+                id: notificationManager
             }
         }
 

@@ -18,10 +18,14 @@
         <file alias="panel/quicksettings/WirelessDelegate.qml">qml/panel/quicksettings/WirelessDelegate.qml</file>
         <file alias="panel/quicksettings/brightness-decrease.svg">qml/panel/quicksettings/brightness-decrease.svg</file>
         <file alias="panel/quicksettings/brightness-increase.svg">qml/panel/quicksettings/brightness-increase.svg</file>
+        <file alias="panel/quicksettings/RotationDelegate.qml">qml/panel/quicksettings/RotationDelegate.qml</file>
         <file alias="osd/VolumeOSD.qml">qml/osd/VolumeOSD.qml</file>
         <file alias="osd/SliderControl.qml">qml/osd/SliderControl.qml</file>
-        <file>StatusIndicator.qml</file>
-        <file>ListenerAnimation.qml</file>
+        <file alias="StatusIndicator.qml">qml/StatusIndicator.qml</file>
+        <file alias="ListenerAnimation.qml">qml/ListenerAnimation.qml</file>
+        <file alias="NotificationsSystem.qml">qml/NotificationsSystem.qml</file>
+        <file alias="NotificationPopSticky.qml">qml/NotificationPopSticky.qml</file>
+        <file alias="NotificationPopTransient.qml">qml/NotificationPopTransient.qml</file>
         <file>icons/configure.svg</file>
         <file>icons/home.svg</file>
         <file>icons/screen-rotate.svg</file>
@@ -29,6 +33,10 @@
         <file>icons/system-shutdown.svg</file>
         <file>icons/volume-high.svg</file>
         <file>icons/volume-mute.svg</file>
-        <file alias="panel/quicksettings/RotationDelegate.qml">qml/panel/quicksettings/RotationDelegate.qml</file>
+        <file>icons/close.svg</file>
+        <file>icons/clear.svg</file>
+        <file>icons/dialog-close.svg</file>
+        <file>icons/notification-icon.svg</file>
+        <file>icons/delete.svg</file>
     </qresource>
 </RCC>
