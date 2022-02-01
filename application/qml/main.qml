@@ -45,6 +45,12 @@ Kirigami.AbstractApplicationWindow {
         z: 1000
     }
 
+    Loader {
+        anchors.fill: parent
+        source: "KdeConnect.qml"
+        z: 1200
+    }
+
     Timer {
         interval: 20000
         running: Mycroft.GlobalSettings.autoConnect && Mycroft.MycroftController.status != Mycroft.MycroftController.Open
