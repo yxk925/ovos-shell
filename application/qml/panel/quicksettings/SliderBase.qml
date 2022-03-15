@@ -22,6 +22,7 @@ import QtQuick.Layouts 1.1
 import QtQuick.Controls 2.2 as Controls
 import QtQuick.Templates 2.2 as T
 import org.kde.kirigami 2.5 as Kirigami
+import Mycroft 1.0 as Mycroft
 
 Controls.Control {
     id: root
@@ -29,6 +30,7 @@ Controls.Control {
     property alias iconSource: icon.source
     property alias slider: slider
     property alias sliderButtonLabel: sliderButtonLabel.text
+    signal iconClicked
 
     leftPadding: Kirigami.Units.largeSpacing
     rightPadding: Kirigami.Units.largeSpacing
@@ -50,6 +52,13 @@ Controls.Control {
                 Layout.preferredWidth: Kirigami.Units.iconSizes.medium
                 Layout.preferredHeight: Layout.preferredWidth
                 color: "#a70f1b"
+
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        iconClicked()
+                    }
+                }
             }
 
             T.Slider {

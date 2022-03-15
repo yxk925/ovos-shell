@@ -58,6 +58,7 @@ Kirigami.AbstractApplicationWindow {
         onTriggered: {
             print("Trying to connect to Mycroft");
             Mycroft.MycroftController.start();
+            slidingPanel.close()
         }
     }
 

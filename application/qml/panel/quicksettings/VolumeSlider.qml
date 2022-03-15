@@ -22,8 +22,9 @@ import Mycroft 1.0 as Mycroft
 
 SliderBase {
     id: root
-    iconSource: "qrc://icons/volume-high"
     property real changeValue: slider.value
+    property bool muted: false
+    iconSource: muted ? "qrc://icons/volume-mute" : "qrc://icons/volume-high"
 
     slider.from: 0
     slider.to: 100
@@ -32,6 +33,16 @@ SliderBase {
 
     onChangeValueChanged: {
         Mycroft.MycroftController.sendRequest("mycroft.volume.set.gui", {"percent": (changeValue / 100)});
+    }
+
+    onIconClicked: {
+        if(muted) {
+            Mycroft.MycroftController.sendRequest("mycroft.volume.unmute.gui", {});
+            muted = false
+        } else {
+            Mycroft.MycroftController.sendRequest("mycroft.volume.mute.gui", {});
+            muted = true
+        }
     }
 
     Component.onCompleted: {

@@ -37,6 +37,8 @@
         <file>icons/system-shutdown.svg</file>
         <file>icons/volume-high.svg</file>
         <file>icons/volume-mute.svg</file>
+        <file>icons/mic.svg</file>
+        <file>icons/mic-mute.svg</file>
         <file>icons/close.svg</file>
         <file>icons/clear.svg</file>
         <file>icons/dialog-close.svg</file>
