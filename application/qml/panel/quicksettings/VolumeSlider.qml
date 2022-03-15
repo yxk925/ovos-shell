@@ -37,10 +37,10 @@ SliderBase {
 
     onIconClicked: {
         if(muted) {
-            Mycroft.MycroftController.sendRequest("mycroft.volume.unmute.gui", {});
+            Mycroft.MycroftController.sendRequest("mycroft.volume.unmute", {});
             muted = false
         } else {
-            Mycroft.MycroftController.sendRequest("mycroft.volume.mute.gui", {});
+            Mycroft.MycroftController.sendRequest("mycroft.volume.mute", {});
             muted = true
         }
     }
