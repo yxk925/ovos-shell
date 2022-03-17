@@ -148,25 +148,13 @@ Kirigami.AbstractApplicationWindow {
             opacity: slidingPanel.position > 0.5 ? 1 : 0
         }
 
-        Item {
-            anchors {
-                left: parent.left
-                right: parent.right
-                top: parent.top
-            }
-            height: Kirigami.Units.gridUnit * 2
-            clip: slidingPanel.position <= 0.25
-            Panel.SlidingPanel {
-                id: slidingPanel
-                anchors {
-                    left: parent.left
-                    right: parent.right
-                    top: parent.top
-                }
-                height: contentsRect.height
-            }
+        Panel.SlidingPanel {
+            id: slidingPanel
+            width: parent.width
+            height: parent.height
             z: 999
         }
+
         Rectangle {
             anchors.fill: parent
             color: "black"
