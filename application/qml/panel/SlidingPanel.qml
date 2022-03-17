@@ -1,153 +1,204 @@
-/*
- * Copyright 2018 by Marco Martin <mart@kde.org>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
-import QtQuick 2.0
-import QtQuick.Controls 2.2 as Controls
-import QtQuick.Layouts 1.1
-import QtQuick.Window 2.2
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Window 2.12
 import org.kde.kirigami 2.5 as Kirigami
-import QtGraphicalEffects 1.0
+import QtQuick.Layouts 1.12
 import "quicksettings"
 
+
 Item {
-    id: root
-    Kirigami.Theme.inherit: false
-    Kirigami.Theme.colorSet: Kirigami.Theme.View
+    id: pullControlRoot
+    width: parent.width
+    height: parent.height
+    property alias position: pullDownRoot.menuPosition
 
-    readonly property bool horizontal: width > height
-
-    readonly property real position: 1 - (flickable.contentY - contentHeight + Math.min(height, quickSettings.implicitHeight)) / Math.min(height, quickSettings.implicitHeight)
-
-    readonly property real contentHeight: quickSettings.height + contentsLayout.anchors.margins * 2
-    state: "closed"
-
-    function open() {
-        flickable.openRequested();
-        openAnim.restart();
-    }
     function close() {
-        flickable.closeRequested();
-        closeAnim.restart();
+        closeAnimationTpBt.restart();
     }
 
-    onWidthChanged: {
-        if (state === "closed") {
-            flickable.contentY = root.contentHeight;
-        }
-    }
-    onHeightChanged: {
-        if (state === "closed") {
-            flickable.contentY = root.contentHeight;
-        }
-    }
+    Control {
+        id: pullDownRoot
+        anchors.top: parent.top
+        width: pullControlRoot.width
+        height: pullControlRoot.height * menuPosition
+        property bool menuOpen: false
+        property bool menuClosed: true
+        property bool menuDragging: false
+        property int menuDragDirection
+        property real menuPosition: 0.0
+        property real dragPositionTopToBottom: 0.0
+        property real dragPositionBottomToTop: 0.0
 
-    Rectangle {
-        anchors.fill: parent
-        color: "black"
-        opacity: Math.min(1, root.position) * 0.6
-        visible: root.position > 0
-    }
-
-    SequentialAnimation {
-        id: openAnim
-        NumberAnimation {
-            target: flickable
-            property: "contentY"
-            from: flickable.contentY
-            to: 0
-            duration: Kirigami.Units.longDuration
-            easing.type: Easing.InOutQuad
-        }
-        PropertyAction {
-            target: flickable
-            property: "open"
-            value: true
-        }
-    }
-
-    SequentialAnimation {
-        id: closeAnim
-        NumberAnimation {
-            target: flickable
-            property: "contentY"
-            from: flickable.contentY
-            to: root.contentHeight
-            duration: Kirigami.Units.longDuration
-            easing.type: Easing.InOutQuad
-        }
-        PropertyAction {
-            target: flickable
-            property: "open"
-            value: false
-        }
-    }
-
-    SequentialAnimation {
-        id: snapAnim
-        NumberAnimation {
-            target: flickable
-            property: "contentY"
-            from: flickable.contentY
-            to: root.contentHeight - Math.min(root.height, quickSettings.implicitHeight + contentsLayout.anchors.margins * 2)
-            duration: Kirigami.Units.longDuration
-            easing.type: Easing.InOutQuad
-        }
-        PropertyAction {
-            target: flickable
-            property: "open"
-            value: true
-        }
-    }
-
-    Flickable {
-        id: flickable
-        anchors.fill: parent
-
-        contentY: root.contentHeight
-        boundsBehavior: Flickable.StopAtBounds
-        contentWidth: width
-        contentHeight: flickableContents.implicitHeight
-
-        property bool open: false
-        signal openRequested
-        signal closeRequested
-
-        onFlickStarted: movementStarted()
-        onFlickEnded: movementEnded()
-        onMovementStarted: root.state = "dragging"
-        onMovementEnded: {print(open)
-            if (root.position < 0.5) {print("CLOSE")
-                openAnim.running = false;
-                snapAnim.running = false;
-                closeAnim.restart();
-            } else if (open && root.position < 1) {print("SNAP")
-                openAnim.running = false;
-                closeAnim.running = false;
-                snapAnim.restart();
-            } else if (!open && root.position >= 0.5) {print("OPEN")
-                closeAnim.running = false;
-                snapAnim.running = false;
-                openAnim.restart();
+        Connections {
+            target: mouseSwipeArea
+            onCustomDragReleased: {
+                if(pullDownRoot.menuDragDirection == 1){
+                    if(pullDownRoot.menuPosition >= 0.1) {
+                        snapAnimationTpBt.restart()
+                    } else if(pullDownRoot.menuPosition < 0.1){
+                        closeAnimationTpBt.restart()
+                    }
+                }
+                if(pullDownRoot.menuDragDirection == 2){
+                    if(pullDownRoot.menuPosition > 0.6) {
+                        snapAnimationTpBt.restart()
+                    } else if (pullDownRoot.menuPosition <= 0.6){
+                        closeAnimationTpBt.restart()
+                    }
+                }
             }
         }
-        MouseArea {
-            id: flickableContents
+
+        SequentialAnimation {
+            id: closeAnimationTpBt
+            NumberAnimation {
+                target: pullDownRoot
+                property: "menuPosition"
+                from: pullDownRoot.menuPosition
+                to: 0.0
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+
+        SequentialAnimation {
+            id: snapAnimationTpBt
+            NumberAnimation {
+                target: pullDownRoot
+                property: "menuPosition"
+                from: pullDownRoot.menuPosition
+                to: 1.0
+                duration: Kirigami.Units.longDuration
+                easing.type: Easing.InOutQuad
+            }
+        }
+
+        function calculate_menu_position(dragPosition, direction) {
+            if (direction == "TopToBottom") {
+                menuPosition = Math.round(Math.max(0.0, Math.min(1.0, dragPosition * 2.0 - 1.0)) * 100.0) / 100.0
+                if(dragPosition < 0.5 && dragPosition > 0.2) {
+                    menuPosition = dragPosition
+                }
+                pullDownRoot.menuDragDirection = 1
+            }
+            if (direction == "BottomToTop") {
+                menuPosition = Math.round(Math.max(0.0, Math.min(1.0, 1.0 - dragPosition * 2.0)) * 100.0) / 100.0
+                pullDownRoot.menuDragDirection = 2
+            }
+        }
+
+        function calculate_mainContents_y(){
+            if (pullDownRoot.menuDragDirection == 1) {
+                mainContents.y = -pullControlRoot.height + pullDownRoot.menuPosition * pullControlRoot.height
+            }
+            if (pullDownRoot.menuDragDirection == 2) {
+                mainContents.y = -pullControlRoot.height + pullDownRoot.menuPosition * pullControlRoot.height
+            }
+        }
+
+        onDragPositionTopToBottomChanged: {
+            calculate_menu_position(dragPositionTopToBottom, "TopToBottom")
+        }
+
+        onDragPositionBottomToTopChanged: {
+            calculate_menu_position(dragPositionBottomToTop, "BottomToTop")
+        }
+
+        onMenuPositionChanged: {
+            if (menuPosition < 0) {
+                menuPosition = 0
+            }
+
+            if (menuPosition == 0.0) {
+                menuClosed = true
+                menuOpen = false
+                menuDragging = false
+            } else if (menuPosition == 1.0) {
+                menuClosed = false
+                menuOpen = true
+                menuDragging = false
+            } else {
+                menuClosed = false
+                menuOpen = false
+                menuDragging = true
+            }
+
+            calculate_mainContents_y()
+        }
+
+        background: Rectangle {
+            color: "black"
+            opacity: pullDownRoot.menuPosition < 0.6 ? Math.min(1, pullDownRoot.menuPosition) * 0.2 : Math.min(1, pullDownRoot.menuPosition) * 0.6
+            visible: pullDownRoot.menuPosition > 0
+            height: pullDownRoot.menuPosition < 0.6 ? quickSettings.implicitHeight : parent.height
+        }
+
+        Rectangle {
+            id: pullDownHandler
+            width: pullControlRoot.width
+            height: pullDownRoot.height == 0 ?  pullControlRoot.height * 0.3 : pullDownRoot.height
+            color: "transparent"
+
+            MouseArea {
+                id: mouseSwipeArea
+                preventStealing: true
+                anchors.fill: parent
+                property real prevX: 0
+                property real prevY: 0
+                property real velocityX: 0.0
+                property real velocityY: 0.0
+                property int startX: 0
+                property int startY: 0
+                property bool tracing: false
+
+                signal customDragReleased()
+
+                onPressed: {
+                    startX = mouse.x
+                    startY = mouse.y
+                    prevX = mouse.x
+                    prevY = mouse.y
+                    velocityX = 0
+                    velocityY = 0
+                    tracing = true
+                }
+
+                onReleased: {
+                    customDragReleased()
+                    velocityX = 0
+                    velocityY = 0
+                    tracing = false
+                }
+
+                onPositionChanged: {
+                    if ( !tracing ) return
+                    var currVelX = (mouse.x-prevX)
+                    var currVelY = (mouse.y-prevY)
+
+                    velocityX = (velocityX + currVelX)/2.0;
+                    velocityY = (velocityY + currVelY)/2.0;
+
+                    prevX = mouse.x
+                    prevY = mouse.y
+
+                    if ( mouse.y > startY && velocityY > 1) {
+                        pullDownRoot.dragPositionTopToBottom = (mouse.y - startY) / pullControlRoot.height
+                    }
+
+                    if(pullDownRoot.menuPosition > 0.5){
+                        if ( mouse.y < startY && velocityY < -2) {
+                            pullDownRoot.dragPositionBottomToTop = (startY - mouse.y) / pullControlRoot.height
+                        }
+                    }
+                }
+            }
+        }
+
+        Item {
+            id: mainContents
             width: parent.width
-            implicitHeight: contentsLayout.implicitHeight + contentsLayout.anchors.margins * 2
+            height: pullControlRoot.height
+            y: -pullControlRoot.height
 
             ColumnLayout {
                 id: contentsLayout
@@ -160,10 +211,10 @@ Item {
                 QuickSettings {
                     id: quickSettings
                     Layout.fillWidth: true
-                    onDelegateClicked: root.close();
+                    onDelegateClicked: pullControlRoot.close();
                 }
                 Item {
-                    Layout.minimumHeight: root.height
+                    Layout.fillHeight: true
                 }
             }
         }
