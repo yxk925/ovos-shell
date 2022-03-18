@@ -19,37 +19,42 @@ import QtQuick 2.1
 import QtQuick.Layouts 1.1
 import org.kde.kirigami 2.5 as Kirigami
 import Mycroft 1.0 as Mycroft
-import org.kde.plasma.private.volume 0.1 as PA
 
 Delegate {
     id: delegate
-    iconSource: toggled ? "qrc://icons/mic" : "qrc://icons/mic-mute"
-    //text: toggled ? i18n("Unmute") : i18n("Mute")
+    iconSource: muted ? "qrc://icons/mic-mute" : "qrc://icons/mic"
+    property bool muted: false
 
-    onToggledChanged: paSinkModel.preferredSink.muted = toggled
-
-    PA.SinkModel {
-        id: paSinkModel
+    Timer {
+        id: statusTimer
     }
+
+    function delay(delayTime, cb) {
+        statusTimer.interval = delayTime;
+        statusTimer.repeat = false;
+        statusTimer.triggered.connect(cb);
+        statusTimer.start();
+    }
+
     onClicked: {
-        Mycroft.MycroftController.sendRequest(delegate.toggled ? "mycroft.mic.unmute" : "mycroft.mic.mute", {});
+        Mycroft.MycroftController.sendRequest(delegate.muted ? "mycroft.mic.unmute" : "mycroft.mic.mute", {});
+        if (delegate.muted) {
+            delegate.muted = false
+        } else {
+            delegate.muted = true
+        }
+
+        delay(1000, function() {
+            Mycroft.MycroftController.sendRequest("mycroft.mic.get_status", {});
+        }
     }
-    Component.onCompleted: {
-        Mycroft.MycroftController.sendRequest("mycroft.mic.get_status", {});
-    }
+
     Connections {
         target: Mycroft.MycroftController
-        onSocketStatusChanged: {
-            if (Mycroft.MycroftController.status == Mycroft.MycroftController.Open) {
-                Mycroft.MycroftController.sendRequest("mycroft.mic.get_status", {});
-            }
-        }
+
         onIntentRecevied: {
             if (type == "mycroft.mic.get_status.response") {
-                delegate.toggled = data.muted;
-
-            } else if (type =="mycroft.mic.mute" || type =="mycroft.mic.unmute") {
-                Mycroft.MycroftController.sendRequest("mycroft.mic.get_status", {});
+                delegate.muted = Boolean(data.muted)
             }
         }
     }
