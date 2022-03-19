@@ -46,7 +46,7 @@ Delegate {
 
         delay(1000, function() {
             Mycroft.MycroftController.sendRequest("mycroft.mic.get_status", {});
-        }
+        });
     }
 
     Connections {
