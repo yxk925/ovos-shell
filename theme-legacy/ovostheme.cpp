@@ -5,7 +5,8 @@
 #include <KSharedConfig>
 #include <QStandardPaths>
 
-#include <KIconColors>
+#include <QScopeGuard>
+#include <QPalette>
 #include <KIconLoader>
 
 OvosTheme::OvosTheme(QObject *parent)
@@ -175,14 +176,26 @@ void OvosTheme::setupFileWatch()
 QIcon OvosTheme::iconFromTheme(const QString &name, const QColor &customColor)
 {
 #ifndef Q_OS_ANDROID
+    QPalette pal = palette();
     if (customColor != Qt::transparent) {
-        KIconColors colors;
-        colors.setText(customColor);
-        return KDE::icon(name, colors);
-    } else {
-        return KDE::icon(name);
+        for (auto state : {QPalette::Active, QPalette::Inactive, QPalette::Disabled}) {
+            pal.setBrush(state, QPalette::WindowText, customColor);
+        }
     }
 
+    bool hadPalette = KIconLoader::global()->hasCustomPalette();
+    QPalette olderPalette = KIconLoader::global()->customPalette();
+
+    auto cleanup = qScopeGuard([&] {
+        if (hadPalette) {
+            KIconLoader::global()->setCustomPalette(olderPalette);
+        } else {
+            KIconLoader::global()->resetPalette();
+        }
+    });
+
+    KIconLoader::global()->setCustomPalette(pal);
+    return KDE::icon(name, KIconLoader::global());
 #else
     // On Android we don't want to use the KIconThemes-based loader since that appears to be broken
     return QIcon::fromTheme(name);
