@@ -8,3 +8,6 @@ Additional Features:
 - OSD Service Overlays
 - Custom OVOS Kirigami Platform Theme
 - KDE Connect Integration
+
+Provides:
+- QML Module: OVOSPlugin 1.0
