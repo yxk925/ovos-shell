@@ -1,4 +1,4 @@
-Mycroft Embedded shell
+OVOS Shell
 ======================
 
-This is a mycroft gui app which is intended to run on low power hardware either as "single application" on a minimal wayland server or with eglfs backend
+OpenVoiceOS Shell with Mycroft GUI embedded view for Wayland and EGLFS platforms.
