@@ -164,11 +164,6 @@ Kirigami.AbstractApplicationWindow {
             }
         }
 
-        Panel.SlidingArea {
-            id: mouseSwipeArea
-            z: 3
-        }
-
         FastBlur {
             anchors.fill: mainView
             source: mainView
