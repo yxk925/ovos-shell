@@ -118,6 +118,8 @@ Kirigami.AbstractApplicationWindow {
         
         StatusIndicator {
             id: si
+            enabled: serviceWatcher.guiServiceAlive
+            visible: serviceWatcher.guiServiceAlive
             anchors {
                 top: parent.top
                 right: parent.right
@@ -160,7 +162,11 @@ Kirigami.AbstractApplicationWindow {
             NotificationsSystem {
                 id: notificationManager
             }
+        }
 
+        Panel.SlidingArea {
+            id: mouseSwipeArea
+            z: 3
         }
 
         FastBlur {
@@ -169,21 +175,21 @@ Kirigami.AbstractApplicationWindow {
             radius: 50
             visible: slidingPanel.position > 0.5 ? 1 : 0
             opacity: slidingPanel.position > 0.5 ? 1 : 0
-            z: 3
+            z: 4
         }
 
         Panel.SlidingPanel {
             id: slidingPanel
             width: parent.width
             height: parent.height
-            z: 4
+            z: 5
         }
 
         Rectangle {
             anchors.fill: parent
             color: "black"
             opacity: (1 - applicationSettings.fakeBrightness) * 0.85
-            z: 5
+            z: 6
         }
     }
 }

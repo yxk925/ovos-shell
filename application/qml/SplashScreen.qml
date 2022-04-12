@@ -62,7 +62,7 @@ Item {
                 property: "value"
                 from: 0
                 to: 1
-                duration: 3000
+                duration: 9000
             }
 
             PropertyAnimation {
@@ -70,7 +70,7 @@ Item {
                 property: "rotation"
                 from: 0
                 to: 760
-                duration: 3000
+                duration: 9000
             }
 
             PropertyAnimation {
@@ -78,7 +78,7 @@ Item {
                 property: "value"
                 from: 0
                 to: 1
-                duration: 3000
+                duration: 9000
             }
 
             PropertyAnimation {
@@ -86,7 +86,7 @@ Item {
                 property: "rotation"
                 from: 0
                 to: -760
-                duration: 3000
+                duration: 9000
             }
         }
 
@@ -96,7 +96,7 @@ Item {
                 property: "value"
                 from: 1
                 to: 0
-                duration: 5000
+                duration: 12000
             }
 
             PropertyAnimation {
@@ -104,7 +104,7 @@ Item {
                 property: "rotation"
                 from: 760
                 to: 0
-                duration: 5000
+                duration: 12000
             }
 
             PropertyAnimation {
@@ -112,7 +112,7 @@ Item {
                 property: "value"
                 from: 1
                 to: 0
-                duration: 5000
+                duration: 12000
             }
 
             PropertyAnimation {
@@ -120,7 +120,7 @@ Item {
                 property: "rotation"
                 from: -760
                 to: 0
-                duration: 5000
+                duration: 12000
             }
         }
     }
