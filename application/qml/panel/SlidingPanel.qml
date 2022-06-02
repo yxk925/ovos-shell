@@ -4,7 +4,7 @@ import QtQuick.Window 2.12
 import org.kde.kirigami 2.5 as Kirigami
 import QtQuick.Layouts 1.12
 import "quicksettings"
-
+import Mycroft 1.0 as Mycroft
 
 Item {
     id: pullControlRoot
@@ -28,6 +28,12 @@ Item {
         property real menuPosition: 0.0
         property real dragPositionTopToBottom: 0.0
         property real dragPositionBottomToTop: 0.0
+
+        onMenuOpenChanged: {
+            if(menuOpen) {
+                Mycroft.MycroftController.sendRequest("mycroft.volume.get.silent", {})
+            }
+        }
 
         Connections {
             target: mouseSwipeArea

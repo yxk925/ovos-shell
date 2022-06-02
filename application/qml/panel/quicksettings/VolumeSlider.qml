@@ -58,7 +58,11 @@ SliderBase {
         }
         onIntentRecevied: {
             if (type == "mycroft.volume.get.response") {
-                slider.value = data.percent * 100;
+                slider.value = Math.round(data.percent * 100);
+            }
+
+            if (type == "mycroft.volume.get.silent.response") {
+                slider.value = Math.round(data.percent * 100);
             }
         }
     }
