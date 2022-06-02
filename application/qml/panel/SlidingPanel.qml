@@ -31,7 +31,7 @@ Item {
 
         onMenuOpenChanged: {
             if(menuOpen) {
-                Mycroft.MycroftController.sendRequest("mycroft.volume.get.silent", {})
+                Mycroft.MycroftController.sendRequest("mycroft.volume.get.sliding.panel", {})
             }
         }
 
