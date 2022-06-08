@@ -15,6 +15,7 @@ class Q_DECL_EXPORT Configuration : public QObject
     Q_PROPERTY(QColor primaryColor READ primaryColor WRITE setPrimaryColor NOTIFY primaryColorChanged)
     Q_PROPERTY(QColor secondaryColor READ secondaryColor WRITE setSecondaryColor NOTIFY secondaryColorChanged)
     Q_PROPERTY(QColor textColor READ textColor WRITE setTextColor NOTIFY textColorChanged)
+    Q_PROPERTY(QString themeStyle READ themeStyle WRITE setThemeStyle NOTIFY themeStyleChanged)
 
 public:
     static Configuration &self();
@@ -28,6 +29,9 @@ public Q_SLOTS:
 
     QColor textColor() const;
     void setTextColor(const QColor &mTextColor);
+
+    QString themeStyle() const;
+    void setThemeStyle(const QString &mThemeStyle);
 
     QString getSelectedSchemeName() const;
     void setSelectedSchemeName(const QString &schemeName);
@@ -44,7 +48,7 @@ public Q_SLOTS:
 
     void setupSchemeWatcher();
 
-    void setScheme(const QString &schemeName, const QString &schemePath);
+    void setScheme(const QString &schemeName, const QString &schemePath,  const QString &schemeStyle);
 
     void updateSelectedScheme();
 
@@ -52,6 +56,7 @@ Q_SIGNALS:
     void primaryColorChanged();
     void secondaryColorChanged();
     void textColorChanged();
+    void themeStyleChanged();
     
     void selectedSchemeNameChanged();
     void selectedSchemePathChanged();

@@ -4,3 +4,4 @@ install(FILES sunset_scheme.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/OVOS/C
 install(FILES ruby_scheme.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/OVOS/ColorSchemes)
 install(FILES slate_scheme.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/OVOS/ColorSchemes)
 install(FILES midnight_scheme.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/OVOS/ColorSchemes)
+install(FILES manjaro_scheme.json DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/OVOS/ColorSchemes)

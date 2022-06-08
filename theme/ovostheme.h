@@ -32,6 +32,7 @@ private:
     QColor m_primaryColor;
     QColor m_secondaryColor;
     QColor m_textColor;
+    QString m_themeStyle;
     QPointer<QWindow> m_window;
 
     QFileSystemWatcher *m_fileWatcher;

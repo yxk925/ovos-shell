@@ -114,6 +114,39 @@ void Configuration::setTextColor(const QColor &mTextColor)
     emit textColorChanged();
 }
 
+QString Configuration::themeStyle() const
+{
+    static KSharedConfigPtr config = KSharedConfig::openConfig(QLatin1String("OvosTheme"));
+    static KConfigGroup grp(config, QLatin1String("ColorScheme"));
+
+    if (grp.isValid()) {
+        return grp.readEntry(QLatin1String("themeStyle"), QStringLiteral("dark"));
+    }
+
+    return QStringLiteral("dark");
+}
+
+void Configuration::setThemeStyle(const QString &mThemeStyle)
+{
+    static KSharedConfigPtr config = KSharedConfig::openConfig(QLatin1String("OvosTheme"));
+    static KConfigGroup grp(config, QLatin1String("ColorScheme"));
+
+    if (themeStyle() == mThemeStyle)
+        return;
+
+    grp.writeEntry(QLatin1String("themeStyle"), mThemeStyle);
+    grp.sync();
+
+    static KConfigGroup grpTwo(config, QLatin1String("SelectedScheme"));
+    grpTwo.writeEntry(QLatin1String("name"), "custom");
+    grpTwo.writeEntry(QLatin1String("path"), "custom");
+    grpTwo.sync();
+
+    m_selectedSchemeName = QLatin1String("custom");
+    m_selectedSchemePath = QLatin1String("custom");
+    emit themeStyleChanged();
+}
+
 void Configuration::setupSchemeWatcher(){
     m_schemeWatcher.addPath(QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/OVOS/ColorSchemes"));
     m_schemeWatcher.addPath(QLatin1String("/usr/share/OVOS/ColorSchemes"));
@@ -245,7 +278,7 @@ QVariantMap Configuration::getScheme(const QString &schemePath)
     return obj.toVariantMap();
 }
 
-void Configuration::setScheme(const QString &schemeName, const QString &schemePath)
+void Configuration::setScheme(const QString &schemeName, const QString &schemePath, const QString &schemeStyle)
 {
     QFile inFile(schemePath);
     inFile.open(QIODevice::ReadOnly|QIODevice::Text);
@@ -257,6 +290,7 @@ void Configuration::setScheme(const QString &schemeName, const QString &schemePa
     QString primaryColor = obj.value(QLatin1String("primaryColor")).toString();
     QString secondaryColor = obj.value(QLatin1String("secondaryColor")).toString();
     QString textColor = obj.value(QLatin1String("textColor")).toString();
+    QString themeStyle = schemeStyle;
 
     static KSharedConfigPtr config = KSharedConfig::openConfig(QLatin1String("OvosTheme"));
     static KConfigGroup grp(config, QLatin1String("ColorScheme"));
@@ -265,6 +299,7 @@ void Configuration::setScheme(const QString &schemeName, const QString &schemePa
     grp.writeEntry(QLatin1String("primaryColor"), primaryColor);
     grp.writeEntry(QLatin1String("secondaryColor"), secondaryColor);
     grp.writeEntry(QLatin1String("textColor"), textColor);
+    grp.writeEntry(QLatin1String("themeStyle"), themeStyle);
     grp.sync();
 
     static KConfigGroup grpTwo(config, QLatin1String("SelectedScheme"));

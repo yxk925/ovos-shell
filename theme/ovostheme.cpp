@@ -144,10 +144,18 @@ void OvosTheme::readConfig()
     static KConfigGroup grp(config, QLatin1String("ColorScheme"));
 
     if (grp.isValid()) {
-           m_primaryColor = grp.readEntry(QLatin1String("primaryColor"), "#313131");
+           m_themeStyle = grp.readEntry(QLatin1String("themeStyle"), QStringLiteral("dark")); 
+           if (m_themeStyle == QStringLiteral("dark") || m_themeStyle == QStringLiteral("Dark")) {
+               m_primaryColor = grp.readEntry(QLatin1String("primaryColor"), "#313131");
+               m_textColor = grp.readEntry(QLatin1String("textColor"), "#F1F1F1");
+           } else {
+               m_primaryColor = grp.readEntry(QLatin1String("textColor"), "#F1F1F1");
+               m_textColor = grp.readEntry(QLatin1String("primaryColor"), "#313131");
+           }
+
            m_secondaryColor = grp.readEntry(QLatin1String("secondaryColor"), "#F70D1A");
-           m_textColor = grp.readEntry(QLatin1String("textColor"), "#F1F1F1");
     } else {
+        m_themeStyle = QStringLiteral("dark");
         m_primaryColor = "#313131";
         m_secondaryColor = "#F70D1A";
         m_textColor = "#F1F1F1";
