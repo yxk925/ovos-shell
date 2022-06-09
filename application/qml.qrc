@@ -46,5 +46,6 @@
         <file>icons/delete.svg</file>
         <file>icons/ovos-egg.svg</file>
         <file>icons/ovos-wave.svg</file>
+        <file>icons/wireless.svg</file>
     </qresource>
 </RCC>

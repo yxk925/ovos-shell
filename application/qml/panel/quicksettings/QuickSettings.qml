@@ -38,9 +38,10 @@ ColumnLayout {
     GridLayout {
         Layout.fillWidth: true
         Layout.alignment: Qt.AlignHCenter
-        columns: verticalMode ? 3 : 6
+        columns: verticalMode ? 4 : 7
 
         HomeDelegate {}
+        WirelessDelegate {}
         RotationDelegate {}
         MuteDelegate {}
         AdditionalSettingsDelegate {}

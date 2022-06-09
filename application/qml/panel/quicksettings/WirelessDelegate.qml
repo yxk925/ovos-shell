@@ -18,24 +18,11 @@
 import QtQuick 2.1
 import QtQuick.Layouts 1.1
 import org.kde.kirigami 2.5 as Kirigami
-import org.kde.plasma.networkmanagement 0.2 as PlasmaNM
 import Mycroft 1.0 as Mycroft
 
 Delegate {
-    iconSource: connectionIconProvider.connectionIcon
-    //text: i18n("Wireless Settings")
-
-//BEGIN NetworkManager
-    PlasmaNM.NetworkStatus {
-        id: networkStatus
+    iconSource: "qrc://icons/wireless"
+    onClicked: {
+        Mycroft.MycroftController.sendRequest("ovos.phal.wifi.plugin.user.activated", {})
     }
-
-    PlasmaNM.ConnectionIcon {
-        id: connectionIconProvider
-    }
-
-    PlasmaNM.Handler {
-        id: handler
-    }
-//END NetworkManager
 }
