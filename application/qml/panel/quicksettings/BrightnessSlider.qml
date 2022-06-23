@@ -40,6 +40,9 @@ SliderBase {
             if (type == "phal.brightness.control.get.response") {
                 slider.value = data.brightness / 100;
             }
+            if (type == "phal.brightness.control.auto.dim.update") {
+                slider.value = data.brightness / 100;
+            }
         }
     }
 }
