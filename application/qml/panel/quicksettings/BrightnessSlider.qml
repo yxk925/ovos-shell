@@ -26,7 +26,9 @@ SliderBase {
     slider.value: applicationSettings.fakeBrightness
     slider.onMoved: {
        applicationSettings.fakeBrightness = slider.value;
-       Mycroft.MycroftController.sendRequest("phal.brightness.control.set", {"brightness": slider.value})
+       var fixedValue = parseFloat(slider.value).toFixed(1);
+       console.log("Fixed Brightness Value: " + fixedValue)
+       Mycroft.MycroftController.sendRequest("phal.brightness.control.set", {"brightness": fixedValue})
     }
     slider.from: 0
     slider.to: 1
@@ -38,10 +40,12 @@ SliderBase {
                 slider.value = data.percent;
             }
             if (type == "phal.brightness.control.get.response") {
-                slider.value = data.brightness / 100;
+                var roundingValue = data.brightness / 100;
+                slider.value = parseFloat(roundingValue).toFixed(1);
             }
             if (type == "phal.brightness.control.auto.dim.update") {
-                slider.value = data.brightness / 100;
+                var roundingDimValue = data.brightness / 100;
+                slider.value = parseFloat(roundingDimValue).toFixed(1);
             }
         }
     }
