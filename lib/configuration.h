@@ -48,7 +48,7 @@ public Q_SLOTS:
 
     void setupSchemeWatcher();
 
-    void setScheme(QString &schemeName, QString &schemePath, QString &schemeStyle);
+    void setScheme(QString schemeName, QString schemePath, QString schemeStyle);
 
     void updateSelectedScheme();
 

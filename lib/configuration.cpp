@@ -278,7 +278,7 @@ QVariantMap Configuration::getScheme(QString &schemePath)
     return obj.toVariantMap();
 }
 
-void Configuration::setScheme(QString &schemeName, QString &schemePath, QString &schemeStyle)
+void Configuration::setScheme(QString schemeName, QString schemePath, QString schemeStyle)
 {
     QFile inFile(schemePath);
     inFile.open(QIODevice::ReadOnly|QIODevice::Text);
