@@ -117,7 +117,7 @@ Popup {
                         anchors.fill: parent
 
                         onClicked: {
-                            Mycroft.MycroftController.sendRequest("system.shutdown", {})
+                            Mycroft.MycroftController.sendRequest("system.shutdown", {"display": true})
                             shutdownMenuPopup.close()
                         }
                         onPressed: {
@@ -182,7 +182,7 @@ Popup {
                         anchors.fill: parent
 
                         onClicked: {
-                            Mycroft.MycroftController.sendRequest("system.reboot", {})
+                            Mycroft.MycroftController.sendRequest("system.reboot", {"display": true})
                             shutdownMenuPopup.close()
                         }
                         onPressed: {
