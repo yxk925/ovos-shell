@@ -35,6 +35,7 @@
         <file alias="DebugTerm.qml">qml/DebugTerm.qml</file>
         <file alias="PairingArea.qml">qml/PairingArea.qml</file>
         <file alias="ShutdownOptions.qml">qml/ShutdownOptions.qml</file>
+        <file alias="FactoryResetUI.qml">qml/FactoryResetUI.qml</file>
         <file>icons/configure.svg</file>
         <file>icons/home.svg</file>
         <file>icons/screen-rotate.svg</file>

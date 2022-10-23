@@ -64,6 +64,33 @@ Kirigami.AbstractApplicationWindow {
         }
     }
 
+    Connections {
+        target: resetOperations
+        onResetOperationsStarted: {
+            contentsRect.visible = false
+            contentsRect.enabled = false
+            factoryResetUI.visible = true
+            factoryResetUI.enabled = true
+        }
+        onResetOperationsFinished: {
+            // Restart the device
+            var platform = environmentSummary.readVariable("QT_QPA_PLATFORM")
+            if (platform == "eglfs") {
+                resetOperations.runRestartDevice()
+            }
+        }
+    }
+
+    Connections {
+        target: Mycroft.MycroftController
+        onIntentRecevied: {
+            if (type == "ovos.shell.exec.factory.reset") {
+                var script_to_run_path = data.script
+                resetOperations.runResetOperations(script_to_run_path)
+            }
+        }
+    }
+
     Action {	
         id: switchToVirtualTerm	
         shortcut: "Ctrl+Shift+F1"	
@@ -87,6 +114,12 @@ Kirigami.AbstractApplicationWindow {
         anchors.fill: parent
         source: "KdeConnect.qml"
         z: 1200
+    }
+
+    FactoryResetUI {
+        id: factoryResetUI
+        visible: false
+        enabled: false
     }
 
     Timer {

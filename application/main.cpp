@@ -31,6 +31,7 @@
 
 #include "appsettings.h"
 #include "plugins/EnvironmentSummary.h"
+#include "plugins/ResetOperations.h"
 
 int main(int argc, char *argv[])
 {
@@ -79,6 +80,7 @@ int main(int argc, char *argv[])
     AppSettings *appSettings = new AppSettings(&view);
     engine.rootContext()->setContextProperty(QStringLiteral("applicationSettings"), appSettings);
     engine.rootContext()->setContextProperty(QStringLiteral("environmentSummary"), new EnvironmentSummary(nullptr));
+    engine.rootContext()->setContextProperty(QStringLiteral("resetOperations"), new ResetOperations(nullptr));
 
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
 
