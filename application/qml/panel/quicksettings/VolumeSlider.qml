@@ -32,7 +32,7 @@ SliderBase {
     sliderButtonLabel: Math.round(slider.position * 100)
 
     onChangeValueChanged: {
-        Mycroft.MycroftController.sendRequest("mycroft.volume.set.gui", {"percent": (changeValue / 100)},
+        Mycroft.MycroftController.sendRequest("mycroft.volume.set", {"percent": (changeValue / 100)},
             {"session": {"session_id": "default"}});
     }
 
@@ -63,10 +63,6 @@ SliderBase {
         }
         onIntentRecevied: {
             if (type == "mycroft.volume.get.response") {
-                slider.value = Math.round(data.percent * 100);
-            }
-
-            if (type == "mycroft.volume.get.sliding.panel.response") {
                 slider.value = Math.round(data.percent * 100);
             }
         }
