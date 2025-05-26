@@ -36,6 +36,8 @@ find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS
     DBus
 )
 
+include("Qt5Alias.cmake")
+
 find_package(KF5DBusAddons ${KF5_MIN_VERSION} REQUIRED)
 
 find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS I18n Kirigami2 GuiAddons CoreAddons Config ConfigWidgets IconThemes)
