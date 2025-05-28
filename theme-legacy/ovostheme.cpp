@@ -127,13 +127,7 @@ void OvosTheme::syncWindow(){
 
 bool OvosTheme::event(QEvent *event)
 {
-    if (event->type() == Kirigami::PlatformThemeEvents::DataChangedEvent::type) {
-        syncColors();
-    }
-    if (event->type() == Kirigami::PlatformThemeEvents::ColorSetChangedEvent::type) {
-        syncColors();
-    }
-    if (event->type() == Kirigami::PlatformThemeEvents::ColorGroupChangedEvent::type) {
+    if (event->type() == QEvent::ThemeChange) {
         syncColors();
     }
     return PlatformTheme::event(event);
@@ -145,7 +139,7 @@ void OvosTheme::readConfig()
     static KConfigGroup grp(config, QLatin1String("ColorScheme"));
 
     if (grp.isValid()) {
-           m_themeStyle = grp.readEntry(QLatin1String("themeStyle"), QLatin1String("dark")); 
+           m_themeStyle = grp.readEntry<QString>(QLatin1String("themeStyle"), QLatin1String("dark")); 
            if (m_themeStyle == QLatin1String("dark") || m_themeStyle == QLatin1String("Dark")) {
                m_primaryColor = grp.readEntry(QLatin1String("primaryColor"), "#313131");
                m_textColor = grp.readEntry(QLatin1String("textColor"), "#F1F1F1");
@@ -191,15 +185,10 @@ QIcon OvosTheme::iconFromTheme(const QString &name, const QColor &customColor)
         }
     }
 
-    bool hadPalette = KIconLoader::global()->hasCustomPalette();
     QPalette olderPalette = KIconLoader::global()->customPalette();
 
     auto cleanup = qScopeGuard([&] {
-        if (hadPalette) {
-            KIconLoader::global()->setCustomPalette(olderPalette);
-        } else {
-            KIconLoader::global()->resetPalette();
-        }
+        KIconLoader::global()->setCustomPalette(olderPalette);
     });
 
     KIconLoader::global()->setCustomPalette(pal);

@@ -28,6 +28,7 @@
 #include <QJsonArray>
 #include <QJsonValue>
 #include <QFile>
+#include <QDebug>
 
 PlacesModel::PlacesModel(QObject *parent) : QAbstractListModel(parent)
 {
