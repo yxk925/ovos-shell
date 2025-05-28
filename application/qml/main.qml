@@ -208,15 +208,6 @@ Kirigami.AbstractApplicationWindow {
             z: 998
         }
 
-        OAuthLoader {
-            id: oauthLoader
-            z: 6
-        }
-
-        OAuthQrCodeLoader {
-            id: oauthQrCodeLoader
-            z: 6
-        }
 
         Item {
             anchors.fill: parent
